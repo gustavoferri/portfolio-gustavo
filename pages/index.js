@@ -42,7 +42,6 @@ class Index extends SuperComponent {
     }
 
     render() {
-        debugger;
         const { title } = this.state;
         // const initialData =  this.props.initialData;
         const { userData, initialData } = this.props;
