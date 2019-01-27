@@ -1,2 +1,2 @@
-# portfolio-gustavo
-Meu portfólio em React
+# Portfolio com React + Next.js
+Meu portfolio em React
