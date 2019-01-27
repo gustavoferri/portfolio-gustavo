@@ -88,91 +88,10 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./components/SuperComponent.js":
-/*!**************************************!*\
-  !*** ./components/SuperComponent.js ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/layouts/BaseLayout */ "./components/layouts/BaseLayout.js");
-var _jsxFileName = "C:\\Users\\HSE\\Web Dev Projects\\React\\portfolio-gustavo\\components\\SuperComponent.js";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var SuperComponent =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(SuperComponent, _React$Component);
-
-  function SuperComponent() {
-    var _this;
-
-    _classCallCheck(this, SuperComponent);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SuperComponent).call(this));
-    _this.someVariable = 'Apenas uma variável';
-    return _this;
-  }
-
-  _createClass(SuperComponent, [{
-    key: "alernName",
-    value: function alernName(title) {
-      alert(title);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 19
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 20
-        },
-        __self: this
-      }, "Minha P\xE1gina Blogs"));
-    }
-  }]);
-
-  return SuperComponent;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (SuperComponent);
-
-/***/ }),
 
 /***/ "./components/layouts/BaseLayout.js":
 /*!******************************************!*\
@@ -380,10 +299,10 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
+/***/ "./pages/portfolios.js":
+/*!*****************************!*\
+  !*** ./pages/portfolios.js ***!
+  \*****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -394,11 +313,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/layouts/BaseLayout */ "./components/layouts/BaseLayout.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_SuperComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/SuperComponent */ "./components/SuperComponent.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "next/link");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 
-var _jsxFileName = "C:\\Users\\HSE\\Web Dev Projects\\React\\portfolio-gustavo\\pages\\index.js";
+var _jsxFileName = "C:\\Users\\HSE\\Web Dev Projects\\React\\portfolio-gustavo\\pages\\portfolios.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -408,51 +328,108 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
-
-var Index =
+var Portfolios =
 /*#__PURE__*/
-function (_SuperComponent) {
-  _inherits(Index, _SuperComponent);
+function (_React$Component) {
+  _inherits(Portfolios, _React$Component);
 
-  _createClass(Index, null, [{
+  function Portfolios() {
+    _classCallCheck(this, Portfolios);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Portfolios).apply(this, arguments));
+  }
+
+  _createClass(Portfolios, [{
+    key: "renderPosts",
+    value: function renderPosts(posts) {
+      return posts.map(function (post) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 26
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+          href: "/portfolio?title=".concat(post.title),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 27
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+          style: {
+            'fontSize': '20px'
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 28
+          },
+          __self: this
+        }, " ", post.title, " ")));
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var posts = this.props.posts;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40
+        },
+        __self: this
+      }, " Minha P\xE1gina Portfolios "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }, this.renderPosts(posts)));
+    }
+  }], [{
     key: "getInitialProps",
     value: function () {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var userData, response;
+        var posts, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                userData = {};
+                posts = [];
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('https://jsonplaceholder.typicode.com/todos/1');
+                return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('https://jsonplaceholder.typicode.com/posts');
 
               case 4:
                 response = _context.sent;
-                userData = response.data;
+                posts = response.data;
                 _context.next = 11;
                 break;
 
@@ -463,8 +440,7 @@ function (_SuperComponent) {
 
               case 11:
                 return _context.abrupt("return", {
-                  initialData: [1, 2, 3, 4],
-                  userData: userData
+                  posts: posts.splice(0, 10)
                 });
 
               case 12:
@@ -483,94 +459,10 @@ function (_SuperComponent) {
     }()
   }]);
 
-  function Index(props) {
-    var _this;
+  return Portfolios;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-    _classCallCheck(this, Index);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "updateTitle", function () {
-      // console.log('hehehehehheh');
-      _this.setState({
-        title: 'Eu sou a Página Inicial Atualizada'
-      });
-    });
-
-    _this.state = {
-      title: 'Eu sou a Página Inicial'
-    };
-    return _this;
-  }
-
-  _createClass(Index, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log('ComponentDidMount');
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log('componentDidUpdate');
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      console.log('componentWillUnmount');
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var title = this.state.title; // const initialData =  this.props.initialData;
-
-      var _this$props = this.props,
-          userData = _this$props.userData,
-          initialData = _this$props.initialData;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 51
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-        className: "frontPage",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 52
-        },
-        __self: this
-      }, " Minha P\xE1gina Index.js da Classe de Componentes "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 53
-        },
-        __self: this
-      }, " ", title, " "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 54
-        },
-        __self: this
-      }, " ", userData.title, " "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.updateTitle,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 55
-        },
-        __self: this
-      }, " Mudar T\xEDtulo "));
-    }
-  }]);
-
-  return Index;
-}(_components_SuperComponent__WEBPACK_IMPORTED_MODULE_4__["default"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (Index);
-{
-  /* <Header title={'Eu sou um componente header'}>
-  <h1> I sou um header subtitulo</h1>
-  </Header> */
-}
+/* harmony default export */ __webpack_exports__["default"] = (Portfolios);
 
 /***/ }),
 
@@ -585,14 +477,14 @@ function (_SuperComponent) {
 
 /***/ }),
 
-/***/ 8:
-/*!******************************!*\
-  !*** multi ./pages/index.js ***!
-  \******************************/
+/***/ 5:
+/*!***********************************!*\
+  !*** multi ./pages/portfolios.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! ./pages/portfolios.js */"./pages/portfolios.js");
 
 
 /***/ }),
@@ -653,4 +545,4 @@ module.exports = require("styled-jsx/style");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=portfolios.js.map
