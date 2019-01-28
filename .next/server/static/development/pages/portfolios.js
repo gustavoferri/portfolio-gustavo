@@ -369,6 +369,7 @@ function (_React$Component) {
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+          as: "/portfolio/".concat(post.id),
           href: "/portfolio?title=".concat(post.title),
           __source: {
             fileName: _jsxFileName,
