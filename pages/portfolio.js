@@ -12,7 +12,7 @@ class Portfolio extends React.Component {
       return (
           <BaseLayout>
             <h1>Minha Página de Portfolio</h1>
-            <h1>{this.props.router.query.title}</h1>
+            <h1>{this.props.router.query.id}</h1>
           </BaseLayout>
       )
    }
