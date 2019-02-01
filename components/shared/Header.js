@@ -1,55 +1,68 @@
 import React from 'react';
 import Link from 'next/link';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink} from 'reactstrap';
 
-import '../../styles/main.scss';
+    const BsNavLink = (props) => {
+        const { route, title } = props;
 
-class Header extends React.Component {
-
-    render () {
-        const title =  this.props.title;
-
-        return (
-            <React.Fragment>
-                <p>{ title }</p>
-                {this.props.children}
-                <p className='customClass'>Eu sou um Style elemento P</p>
-
-                <Link href="/">
-                    <a style={{'fontSize': '20px'}}> Home </a>
-                </Link>
-
-                <Link href="/sobre"> 
-                    <a> Sobre </a>
-                </Link>
-                <Link href="/portfolios"> 
-                    <a> Portfolios </a>
-                </Link>
-                <Link href="/blogs"> 
-                    <a> Blogs </a>
-                </Link>
-                <Link href="/cv"> 
-                    <a> CV </a>
-                </Link>
-                <style jsx>
-                {
-                    `
-                    a {
-                        font-size: 20;
-                    };
-                    .customClass {
-                        color: red;
-                    }
-                    `
-                }
-                </style>
-            </React.Fragment>
-
-            /*{/* <a href="/sobre"> Sobre </a>
-            <a href="/portfolios"> Portfolios </a>
-            <a href="/blogs"> Blogs </a>
-            <a href="/cv"> Cv </a> }*/
+         return (
+            <Link href={route}>
+                <a className="nav-link"> {title} </a>
+            </Link>  
         )
     }
+
+export default class Example extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  
+  render() {
+    return (
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Gustavo Ferri</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <BsNavLink route="/" title="Home" />
+              </NavItem>
+              <NavItem>
+                  <BsNavLink route="/sobre" title="Sobre" />
+              </NavItem>
+              <NavItem>
+                  <BsNavLink route="/portfolios" title="Portifolio" />
+              </NavItem>
+              <NavItem>
+                  <BsNavLink route="/blogs" title="Blog" />
+              </NavItem>
+              <NavItem>
+                  <BsNavLink route="/cv" title="Cv" />
+              </NavItem>
+
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
-export default Header;
