@@ -2,8 +2,8 @@
 
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
-import { resolve } from 'dns';
-import { rejects } from 'assert';
+// import { resolve } from 'dns';
+// import { rejects } from 'assert';
 
 class Auth0 {
 
@@ -64,13 +64,11 @@ class Auth0 {
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
-    const expiresAt = Cookies.getJson('expiresAt');
+    const expiresAt = Cookies.getJSON('expiresAt');
     return new Date().getTime() < expiresAt;
   }
 }
 
-
-}
 
 const auth0Client = new Auth0();
 
