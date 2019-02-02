@@ -1,4 +1,4 @@
-import { container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const BasePage = (props) => {
