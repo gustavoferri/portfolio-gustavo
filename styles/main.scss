@@ -12,10 +12,23 @@ html, body {
     font-family: 'Montserrat', 'Helvetica' !important;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .self-typed {
     font-size: 31px;
     font-weight: bold;
     letter-spacing: 2px;
     color: white;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.base-page {
+    padding-top: 150px;
+
 }
   
