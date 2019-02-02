@@ -10,7 +10,7 @@ class Index extends React.Component  {
     constructor(props) { 
         super(props);
 
-        this.roles = ['Developer', 'Team Player', 'React.js', 'Magento', 'Wordpress'];
+        this.roles = ['Developer', 'Mobile Specialist', 'React.js', 'JavaScript', 'Magento'];
     }
 
     render() {
