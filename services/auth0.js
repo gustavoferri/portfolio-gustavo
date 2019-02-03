@@ -2,8 +2,8 @@
 
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
-//import jwt from 'jsonwebtoken';
-// import axios from 'axios';
+import jwt from 'jsonwebtoken';
+//  import axios from 'axios';
  import { resolve } from 'dns';
  import { rejects } from 'assert';
 
@@ -23,7 +23,6 @@ class Auth0 {
           this.login = this.login.bind(this);
           this.logout = this.logout.bind(this);
           this.handleAuthentication = this.handleAuthentication.bind(this);
-          this.isAuthenticated = this.isAuthenticated.bind(this);
         }
 
         handleAuthentication() {
@@ -38,7 +37,6 @@ class Auth0 {
               }
             });
           }
-
      setSession(authResult) {
          const expiresAt = JSON.stringify((authResult.expiresIn = 1000) + new Date().getTime());
 
@@ -75,16 +73,11 @@ class Auth0 {
       return undefined;
   }
 
-  isAuthenticated() {
-    const expiresAt = Cookies.getJSON('expiresAt');
-    return new Date().getTime() < expiresAt;
-  }
-
-  clientAuth() {
+  async clientAuth() {
       const token = Cookies.getJSON('jwt');
-      const verifiedToken = this.verifyToken(token);
+      const verifiedToken = await this.verifyToken(token);
 
-      return token;
+      return verifiedToken;
   }
 
   serverAuth(req) {
@@ -95,16 +88,13 @@ class Auth0 {
         if (!tokenCookie) { return undefined };
 
         const token = tokenCookie.split('=')[1];
-        const verifiedToken = this.verifyToken(token);
+        const verifiedToken = await this.verifyToken(token);
         
         return verifiedToken;
       }
 
       return undefined;
   }
-
-
-
 }
 
 

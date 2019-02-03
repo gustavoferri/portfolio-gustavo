@@ -10,6 +10,7 @@ import {
   NavLink} from 'reactstrap'
 
   import auth0 from '../../services/auth0';
+import { userInfo } from 'os';
 
 
     const BsNavLink = (props) => {
@@ -53,7 +54,7 @@ export default class Example extends React.Component {
   
   render() {
 
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, user } = this.props;
 
     return (
       <div>
@@ -77,14 +78,19 @@ export default class Example extends React.Component {
               <NavItem className="port-navbar-item">
                   <BsNavLink route="/cv" title="Cv" />
               </NavItem>
-              { !auth0.isAuthenticated() && 
+              { !isAuthenticated() && 
               <NavItem className="port-navbar-item">
                   <Login />
               </NavItem>
               }
-              { auth0.isAuthenticated() &&
+              { isAuthenticated() &&
               <NavItem className="port-navbar-item">
                   <Logout />
+              </NavItem>
+              }
+              { isAuthenticated() &&
+              <NavItem className="port-navbar-item">
+                  <span className="nav-link port-navbar-link"> {user.name} </span> 
               </NavItem>
               }
             </Nav>
