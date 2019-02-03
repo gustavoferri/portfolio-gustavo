@@ -2,10 +2,10 @@
 
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
-// import jwt from 'jsonwebtoken';
+//import jwt from 'jsonwebtoken';
 // import axios from 'axios';
-// import { resolve } from 'dns';
-// import { rejects } from 'assert';
+ import { resolve } from 'dns';
+ import { rejects } from 'assert';
 
 const CLIENT_ID = process.env.CLIENT_ID;
 
@@ -58,11 +58,21 @@ class Auth0 {
             returnTo: '',
             clientID: '7mc3hlqKkLNS9oJJwgL2QAKM7yIfU7cR'
         })
-    }
-        
+    }  
 
   login() {
     this.auth0.authorize();
+  }
+
+  verifyToken(token) {
+      if (token) {
+          const decodedToken = jwt.decode(token);
+          const expiresAt = decodedToken.exp * 1000;
+
+          return (decodedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+      }
+
+      return undefined;
   }
 
   isAuthenticated() {
@@ -70,22 +80,27 @@ class Auth0 {
     return new Date().getTime() < expiresAt;
   }
 
-
   clientAuth() {
-      return this.isAuthenticated();
+      const token = Cookies.getJSON('jwt');
+      const verifiedToken = this.verifyToken(token);
+
+      return token;
   }
 
   serverAuth(req) {
       if(req.headers.cookie) {
           
-        const expirestAtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('expiresAt='));
+        const tokenCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
 
-        if (!expirestAtCookie) { return undefined };
+        if (!tokenCookie) { return undefined };
 
-        const expiresAt = expirestAtCookie.split('=')[1];
+        const token = tokenCookie.split('=')[1];
+        const verifiedToken = this.verifyToken(token);
         
-        return new Date().getTime() < expiresAt;
+        return verifiedToken;
       }
+
+      return undefined;
   }
 
 

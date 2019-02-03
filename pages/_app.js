@@ -11,17 +11,15 @@ export default class MyApp extends App {
 
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
-    const isAuthenticated = process.browser ? auth0.clientAuth() : auth0.serverAuth(ctx.req);
-
-    console.log(isAuthenticated);
+    const user = process.browser ? auth0.clientAuth() : auth0.serverAuth(ctx.req);
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
+    
+    const auth = { user, isAuthenticated: !!user };
 
-    const auth = { isAuthenticated };
-
-    return { pageProps, auth}
+    return { pageProps, auth }
   }
 
   render () {
