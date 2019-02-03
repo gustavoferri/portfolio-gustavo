@@ -3,7 +3,7 @@
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
-//  import axios from 'axios';
+import axios from 'axios';
  import { resolve } from 'dns';
  import { rejects } from 'assert';
 
@@ -25,19 +25,22 @@ class Auth0 {
           this.handleAuthentication = this.handleAuthentication.bind(this);
         }
 
-        handleAuthentication() {
+    handleAuthentication() {
+        return new Promise((resolve, reject) => {
             this.auth0.parseHash((err, authResult) => {
-              if (authResult && authResult.accessToken && authResult.idToken) {
-                this.setSession(authResult);
-                resolve();
-              } else if (err) {
-                  reject(err);
+        if (authResult && authResult.accessToken && authResult.idToken) {
+             this.setSession(authResult);
+             resolve();
+        } else if (err) {
+             reject(err);
                 console.log(err);
-               /* alert(`Error: ${err.error}. Check the console for further details.`);*/
-              }
-            });
-          }
-     setSession(authResult) {
+                /* alert(`Error: ${err.error}. Check the console for further details.`);*/
+            }
+         });
+        })
+        }
+
+    setSession(authResult) {
          const expiresAt = JSON.stringify((authResult.expiresIn = 1000) + new Date().getTime());
 
         //  localStorage.setItem('id_token', authResult.idToken);
@@ -58,29 +61,51 @@ class Auth0 {
         })
     }  
 
-  login() {
+    login() {
     this.auth0.authorize();
   }
 
-  verifyToken(token) {
-      if (token) {
-          const decodedToken = jwt.decode(token);
-          const expiresAt = decodedToken.exp * 1000;
+    async getJWKS() {
+        const res = await axios.get('https://portfolio-gustavo.auth0.com/.well-known/jwks.json');
+        const jwks = res.data;
+        return jwks;
 
-          return (decodedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+  }
+
+   async verifyToken(token) {
+      if (token) {
+          const decodedToken = jwt.decode(token, { complete: true});
+          const jwks = await this.getJWKS();   
+          console.log(jwks);
+          const jwk = jwks.keys[0];
+          // BUILD CERTIFICATE
+          let cert = jwk.x5c[0];
+          cert = cert.match(/.{1,64}/g).join('\n');
+          cert = `-----BEGIN CERTIFICATE-----\n${center}\n-----END CERTIFICATE------\n`;
+
+          if (jwk.kid === decodedToken.kid){
+              try {
+                 const verifiedToken = jwt.verify(token, cert); 
+                 const expiresAt = verifiedToken.exp * 1000;
+
+                 return (verifiedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+              } catch (err) {
+                  return undefined;
+              }
+          }   
       }
 
       return undefined;
   }
 
-  async clientAuth() {
+    async clientAuth() {
       const token = Cookies.getJSON('jwt');
       const verifiedToken = await this.verifyToken(token);
 
-      return verifiedToken;
+      return token;
   }
 
-  serverAuth(req) {
+    async serverAuth(req) {
       if(req.headers.cookie) {
           
         const tokenCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
