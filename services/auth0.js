@@ -2,8 +2,12 @@
 
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
+// import jwt from 'jsonwebtoken';
+// import axios from 'axios';
 // import { resolve } from 'dns';
 // import { rejects } from 'assert';
+
+const CLIENT_ID = process.env.CLIENT_ID;
 
 class Auth0 {
 
@@ -28,9 +32,9 @@ class Auth0 {
                 this.setSession(authResult);
                 resolve();
               } else if (err) {
-                  rejects(err);
+                  reject(err);
                 console.log(err);
-                alert(`Error: ${err.error}. Check the console for further details.`);
+               /* alert(`Error: ${err.error}. Check the console for further details.`);*/
               }
             });
           }
@@ -41,14 +45,14 @@ class Auth0 {
         //  localStorage.setItem('id_token', authResult.idToken);
 
         Cookies.set('user', authResult.idTokenPayload);
-        Cokkies.set('jwt', authResult.idToken);
-        Cokkies.set('expiresAt', expiresAt);
+        Cookies.set('jwt', authResult.idToken);
+        Cookies.set('expiresAt', expiresAt);
     }
 
     logout() {
         Cookies.remove('user');
-        Cokkies.remove('jwt');
-        Cokkies.remove('expiresAt');
+        Cookies.remove('jwt');
+        Cookies.remove('expiresAt');
 
         this.auth0.logout({
             returnTo: '',
@@ -62,11 +66,30 @@ class Auth0 {
   }
 
   isAuthenticated() {
-    // Check whether the current time is past the
-    // access token's expiry time
     const expiresAt = Cookies.getJSON('expiresAt');
     return new Date().getTime() < expiresAt;
   }
+
+
+  clientAuth() {
+      return this.isAuthenticated();
+  }
+
+  serverAuth(req) {
+      if(req.headers.cookie) {
+          
+        const expirestAtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('expiresAt='));
+
+        if (!expirestAtCookie) { return undefined };
+
+        const expiresAt = expirestAtCookie.split('=')[1];
+        
+        return new Date().getTime() < expiresAt;
+      }
+  }
+
+
+
 }
 
 

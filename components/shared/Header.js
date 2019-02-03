@@ -52,6 +52,9 @@ export default class Example extends React.Component {
   }
   
   render() {
+
+    const { isAuthenticated } = this.props;
+
     return (
       <div>
         <Navbar color="light" light expand="md">

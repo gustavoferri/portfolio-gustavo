@@ -6,7 +6,7 @@ class Sobre extends React.Component {
 
     render() {
       return (
-        <BaseLayout>
+        <BaseLayout {...this.props.auth}>
             <BasePage className="about-page">
                <h1> Minha Página Sobre </h1>
             </BasePage>
