@@ -4,7 +4,7 @@ import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
- import { resolve } from 'dns';
+//  import { resolve } from 'dns';
  import { rejects } from 'assert';
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -32,7 +32,7 @@ class Auth0 {
              this.setSession(authResult);
              resolve();
         } else if (err) {
-             reject(err);
+             rejects(err);
                 console.log(err);
                 /* alert(`Error: ${err.error}. Check the console for further details.`);*/
             }
@@ -75,6 +75,9 @@ class Auth0 {
    async verifyToken(token) {
       if (token) {
           const decodedToken = jwt.decode(token, { complete: true});
+          
+          if (!decodedToken) { return undefined; }
+
           const jwks = await this.getJWKS();   
           console.log(jwks);
           const jwk = jwks.keys[0];
@@ -83,14 +86,14 @@ class Auth0 {
           cert = cert.match(/.{1,64}/g).join('\n');
           cert = `-----BEGIN CERTIFICATE-----\n${center}\n-----END CERTIFICATE------\n`;
 
-          if (jwk.kid === decodedToken.kid){
+          if (jwk.kid === decodedToken.header.kid){
               try {
                  const verifiedToken = jwt.verify(token, cert); 
                  const expiresAt = verifiedToken.exp * 1000;
 
                  return (verifiedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
               } catch (err) {
-                  return undefined;
+                return undefined;
               }
           }   
       }

@@ -9,7 +9,7 @@ import {
   NavItem,
   NavLink} from 'reactstrap'
 
-  import auth0 from '../../services/auth0';
+import auth0 from '../../services/auth0';
 import { userInfo } from 'os';
 
 
