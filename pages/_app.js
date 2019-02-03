@@ -27,7 +27,7 @@ export default class MyApp extends App {
 
     return (
       <Container>
-        <Component {...pageProps} auth={auth} />
+        <Component {...pageProps} auth={auth}/>
       </Container>
     )
   }

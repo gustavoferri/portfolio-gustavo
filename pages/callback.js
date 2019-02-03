@@ -21,4 +21,4 @@ class Callback extends React.Component {
    }
 }
 
-export default withRouter (Callback);
+export default withRouter(Callback);
