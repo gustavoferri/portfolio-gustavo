@@ -78,17 +78,17 @@ export default class Example extends React.Component {
               <NavItem className="port-navbar-item">
                   <BsNavLink route="/cv" title="Cv" />
               </NavItem>
-              { !isAuthenticated() && 
+              { !isAuthenticated && 
               <NavItem className="port-navbar-item">
                   <Login />
               </NavItem>
               }
-              { isAuthenticated() &&
+              { isAuthenticated &&
               <NavItem className="port-navbar-item">
                   <Logout />
               </NavItem>
               }
-              { isAuthenticated() &&
+              { isAuthenticated &&
               <NavItem className="port-navbar-item">
                   <span className="nav-link port-navbar-link"> {user.name} </span> 
               </NavItem>
