@@ -14,6 +14,18 @@ class Secret extends React.Component {
         return { superSecretValue };
     }
 
+    // constructor(props) {
+    //     super();
+
+    //     this.state = {
+    //         secretData: []
+    //     }
+    // }
+
+    state = {
+        secretData: []
+    }
+
     async componentDidMount() {
         const res = await axios.get('/api/v1/secret');
         const secretData = res.data;

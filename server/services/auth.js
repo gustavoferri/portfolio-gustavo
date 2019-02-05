@@ -1,14 +1,17 @@
-
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
 
 
 // MIDDLEWARE
-exports.checkJWT = function(req, res, next) {
-    const isValidTokes = true;
+exports.checkJWT = jwt({ 
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestPerMinute: 15,
+        jwksUri: 'https://portfolio-gustavo.auth0.com/.well-known/jwks.json'
+      }),
 
-    if (isValidTokes) {
-        next();
-    } else {
-        return res.status(401).send({title: 'Not Authorized', detail: 'Please login in order to get a data'});
-    }
-
-}
+    audience: '7mc3hlqKkLNS9oJJwgL2QAKM7yIfU7cR',
+    issuer: 'https://portfolio-gustavo.auth0.com/',
+    algorithms: ['RS256']
+})
