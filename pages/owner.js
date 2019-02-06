@@ -17,4 +17,4 @@ class Owner extends React.Component {
     }
 }
 
-expor default withAuth(Owner, 'admin');
+export default withAuth('siteOwner')(Owner);
