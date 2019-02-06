@@ -4,14 +4,16 @@ import BasePage from '../components/BasePage';
 
 import withAuth from '../components/hoc/withAuth';
 
-import axios from 'axios';
+import { getSecretData, getSecretDataServer } from '../actions'
 
 class Secret extends React.Component {
 
-    getInitialProps() {
-        const superSecretValue = 'Super Secret Value';
+    static async getInitialProps({req}) {
+        const anotherSecretData =  await getSecretData();
 
-        return { superSecretValue };
+         console.log(anotherSecretData);
+
+        return { anotherSecretData };
     }
 
     // constructor(props) {
@@ -27,8 +29,7 @@ class Secret extends React.Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('/api/v1/secret');
-        const secretData = res.data;
+        const secretData = await getSecretData();
         this.setState({
             secretData
         });
@@ -57,11 +58,13 @@ class Secret extends React.Component {
         <BaseLayout {...this.props.auth}>
             <BasePage>
                 <h1> Minha Página Secreta </h1>
+                <p> Secret Content Here </p>
                 <h2> {superSecretValue} </h2>
+                { this.displaySecretData() } 
             </BasePage>
          </BaseLayout>
       )
    }
 }
 
-export default wihAuth(Secret);
+export default Secret;
