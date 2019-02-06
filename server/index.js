@@ -26,10 +26,10 @@ const secretData = [
   const server = express();
 
   server.get('/api/v1/secret', authService.checkJWT,  (req, res) => {
+    return res.json(secretData);
+  })
 
-  console.log('-------------CONSOLING USER --------------');
-  console.log(req.user);
-
+  server.get('/api/v1/onlysiteowner', authService.checkJWT, authService.chechRole('siteOwner'),  (req, res) => {
     return res.json(secretData);
   })
 

@@ -88,7 +88,7 @@ export default class Example extends React.Component {
                   <Logout />
               </NavItem>
               }
-              { auth0.isAuthenticated &&
+              { isAuthenticated &&
               <NavItem className="port-navbar-item">
                   <span className="nav-link port-navbar-link"> {user.name} </span> 
               </NavItem>
