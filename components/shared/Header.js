@@ -54,11 +54,11 @@ export default class Example extends React.Component {
   
   render() {
 
-    const { isAuthenticated, user } = this.props;
+    const { isAuthenticated, user, className } = this.props;
 
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar className={`port-navbar port-nav-base absolute &{className}`} color="light" light expand="md">
           <NavbarBrand href="/">Gustavo Ferri</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

@@ -29,7 +29,7 @@ class Portfolios extends React.Component {
                          <a style={{'fontSize': '20px'}}> {post.title} </a>
                     </Link>
                 </li>
-        )
+            )
         })
     }
 
@@ -37,8 +37,8 @@ class Portfolios extends React.Component {
         const { posts } = this.props;       
         
         return (
-          <BaseLayout>
-            <BasePage>
+          <BaseLayout {...this.props.auth}>
+            <BasePage title="Portfolio">
                 <h1> Minha Página Portfolios </h1>
                 <ul>
                     { this.renderPosts(posts) }

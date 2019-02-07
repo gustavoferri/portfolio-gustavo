@@ -37,11 +37,11 @@ const secretData = [
     return handle(req, res)
   })
 
-  // server.use(function (err, req, res, next) {
-  //   if (err.name === 'UnauthorizedError') {
-  //     res.status(401).send({title: 'Unauthorized', detail: 'Unauthorized Access!'});
-  //   }
-  // });
+  server.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError' ) {
+      res.status(401).send({title: 'Unauthorized', detail: 'Unauthorized Access!' });
+    }
+  });
 
    server.use(handle).listen(3000, (err) => {
     if (err) throw err
