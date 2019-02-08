@@ -19,7 +19,7 @@ export default role => Component =>
             let isAuthorized = false;
 
             if (role) {
-                if (userRole && userRole == role) { isAuthorized = true };
+                if (userRole && userRole === role) { isAuthorized = true };
             } else {
                 isAuthorized = true;
             }
