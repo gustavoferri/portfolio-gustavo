@@ -58,8 +58,8 @@ export default class Example extends React.Component {
 
     return (
       <div>
-        <Navbar className={`port-navbar port-nav-base absolute &{className}`} color="light" light expand="md">
-          <NavbarBrand href="/">Gustavo Ferri</NavbarBrand>
+        <Navbar className={`port-navbar port-nav-base absolute &{className}`} color="transparent" dark expand="md">
+          <NavbarBrand className="port-navbar-brand" href="/">Gustavo Ferri</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

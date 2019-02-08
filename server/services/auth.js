@@ -23,6 +23,6 @@ exports.checkJWT = jwt({
         if (user && (user[namespace + 'role'] === role)) {
             next();
         } else {
-            return res.status(401).send({title: 'Not Authorizes', detail: "You are not authorized acess this data"})
+            return res.status(401).send({title: 'Not Authorizes', detail: 'You are not authorized acess this data'})
         }
     }
