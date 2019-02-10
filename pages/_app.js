@@ -16,9 +16,10 @@ export default class MyApp extends App {
     if (Component.getInitialProps) {
         pageProps = await Component.getInitialProps(ctx)
     }
-    
-    const auth = { user, isAuthenticated: !!user };
 
+    const isSiteOwner = user && user[process.env.NAMESPACE + '/role'] === 'siteOwner';
+    const auth = { user, isAuthenticated: !!user, isSiteOwner };
+    
     return { pageProps, auth }
   }
 

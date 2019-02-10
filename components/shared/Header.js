@@ -7,14 +7,15 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink} from 'reactstrap'
+  NavLink} from 'reactstrap';
 
 import auth0 from '../../services/auth0';
-import { userInfo } from 'os';
 
 
     const BsNavLink = (props) => {
         const { route, title } = props;
+        const className = props.className || "";
+
 
          return (
             <Link href={route}>
@@ -37,15 +38,21 @@ import { userInfo } from 'os';
       )
     }
 
-export default class Example extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isOpen: false,
+      dropdownOpen: false
+    };
 
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
     };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -55,6 +62,7 @@ export default class Example extends React.Component {
   render() {
 
     const { isAuthenticated, user, className } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div>
@@ -78,7 +86,7 @@ export default class Example extends React.Component {
               <NavItem className="port-navbar-item">
                   <BsNavLink route="/cv" title="Cv" />
               </NavItem>
-              { !auth0.isAuthenticated && 
+              { !isAuthenticated && 
               <NavItem className="port-navbar-item">
                   <Login />
               </NavItem>
