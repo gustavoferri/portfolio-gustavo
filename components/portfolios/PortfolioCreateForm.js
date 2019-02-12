@@ -2,8 +2,21 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, FormGroup, Label } from 'reactstrap';
+import PortInput from '../forn/PortInput';
 
- const validateInputs = (validate) => {
+ const validateInputs = (values) => {
+    let errors  = {};
+
+    Object.entries(values).forEach((objectKey) => {
+
+      if(!values[key]) {
+        errors[key] = `field ${key} is required!`]
+      }
+    });
+
+    return errors;
+  }
+
 //     let errors = {};
 //     if (!values.email) {
 //       errors.email = 'Required';
@@ -37,12 +50,27 @@ const PortfolioCreateForm = () => (
     >
       {({ isSubmitting }) => (
         <Form>
-          <FormGroup>
-            <Label>Título</Label>
-            <Field className="form-control"  type="text" name="title" />
-            <ErrorMessage name="title" component="div" />
-          </FormGroup>
-          
+            <Field type="text" 
+                  name="title" 
+                  label="Title"
+                  component={PortInput} />
+            <Field type="text" 
+                  name="company"
+                  label="Empresa"
+                  component={PortInput} />
+            <Field type="text" 
+                  name="location"
+                  label="Localização" 
+                  component={PortInput} />
+            <Field type="position" 
+                  name="Position" 
+                  component={PortInput} />
+            <Field type="textarea" 
+                  name="description"
+                  label="Descrição"
+                  component={PortInput} />
+    
+    
           <FormGroup>
             <Label>Empresa</Label>
             <Field className="form-control"  type="text" name="company" />
