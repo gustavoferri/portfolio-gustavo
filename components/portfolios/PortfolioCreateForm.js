@@ -3,6 +3,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, FormGroup, Label } from 'reactstrap';
 import PortInput from '../forn/PortInput';
+import PortDate from '../form/PortDate';
 
  const validateInputs = (values) => {
     let errors  = {};
@@ -29,12 +30,12 @@ import PortInput from '../forn/PortInput';
 }
 
 
-const INITIAL_VALUES = { title: '', 
+const INITIAL_VALUES = {  title: '', 
                           company: '',
-                           location: '', 
-                           description: '', 
-                           startDate: '', 
-                           endDate: '' };
+                          location: '', 
+                          description: '', 
+                          startDate: '', 
+                          endDate: '' };
 
 const PortfolioCreateForm = () => (
   <div>
@@ -51,61 +52,34 @@ const PortfolioCreateForm = () => (
       {({ isSubmitting }) => (
         <Form>
             <Field type="text" 
-                  name="title" 
-                  label="Title"
-                  component={PortInput} />
+                   name="title" 
+                   label="Title"
+                   component={PortInput} />
             <Field type="text" 
-                  name="company"
-                  label="Empresa"
-                  component={PortInput} />
+                   name="company"
+                   label="Empresa"
+                   component={PortInput} />
             <Field type="text" 
-                  name="location"
-                  label="Localização" 
-                  component={PortInput} />
-            <Field type="position" 
-                  name="Position" 
-                  component={PortInput} />
-            <Field type="textarea" 
-                  name="description"
-                  label="Descrição"
-                  component={PortInput} />
+                   name="location"
+                   label="Localização" 
+                   component={PortInput} />
+            <Field type="text" 
+                   name="Position"
+                   label="Position" 
+                   component={PortInput} />
+            <Field type="textarea"
+                   name="description"
+                   label="Descrição"
+                   component={PortInput} />
     
-    
-          <FormGroup>
-            <Label>Empresa</Label>
-            <Field className="form-control"  type="text" name="company" />
-            <ErrorMessage name="company" component="div" />
-          </FormGroup>
+            <Field name="description"
+                  label="Start Date"
+                  component={PortDate} />
 
-          <FormGroup>
-            <Label>Localização</Label>
-            <Field className="form-control"  type="text" name="location" />
-            <ErrorMessage name="location" component="div" />
-          </FormGroup>
-          
-          <FormGroup>
-            <Label>Position</Label>
-            <Field className="form-control"  type="text" name="position" />
-            <ErrorMessage name="position" component="div" />
-          </FormGroup>
-
-          <FormGroup>
-            <Label>Descrição</Label>
-            <Field className="form-control" type="textarea" name="description" component="textarea" />
-            <ErrorMessage name="description" component="div" />
-          </FormGroup>
-
-          <FormGroup>
-            <Label>Data de ínicio</Label>
-            <Field className="form-control"  type="text" name="startDate" />
-             <ErrorMessage name="startDate" component="div" />
-          </FormGroup>
-
-          <FormGroup>
-            <Label>Data final</Label>
-            <Field className="form-control" type="text" name="endDate" />
-            <ErrorMessage name="endDate" component="div" />
-          </FormGroup>
+            <Field name="endDate"
+                  label="End Date"
+                  component={PortDate} />
+  
 
           <button type="submit" disabled={isSubmitting}>
             Criar
