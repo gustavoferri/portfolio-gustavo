@@ -15,20 +15,33 @@ export default class PortDate extends React.Component {
   }
 
   handleChange(date) {
-
-    const formattedDate = date.format();
+    const { setFieldValue, setFieldTouched } = this.props.form;
+    const { name } = this.props.field;
 
     this.setState({
-      startDate: date
+     dateValue: date
     });
+
+    setFieldValue(name, date, true);
+    setFieldTouched(name, true, true);
   }
 
   render() {
+const { label } = this.props;
+
     return (
-      <DatePicker
+      <FormGroup>    
+        <Label>{label}</Label>  
+        <DatePicker
         selected={this.state.startDate}
         onChange={this.handleChange}
+        peekNextMonth
+        showMonthDropdown
+        showYearDropdown
+        maxDate={moment()}
+        dropdownMode="select"
       />
+      </FormGroup>
     );
   }
 }

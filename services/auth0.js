@@ -35,7 +35,7 @@ class Auth0 {
              this.setSession(authResult);
              resolve();
         } else if (err) {
-             rejects(err);
+             reject(err);
                 console.log(err);
                 /* alert(`Error: ${err.error}. Check the console for further details.`);*/
             }
@@ -84,6 +84,7 @@ class Auth0 {
           const jwks = await this.getJWKS();   
           console.log(jwks);
           const jwk = jwks.keys[0];
+
           // BUILD CERTIFICATE
           let cert = jwk.x5c[0];
           cert = cert.match(/.{1,64}/g).join('\n');
@@ -94,7 +95,7 @@ class Auth0 {
                  const verifiedToken = jwt.verify(token, cert); 
                  const expiresAt = verifiedToken.exp * 1000;
 
-                 return (verifiedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+                 return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
               } catch (err) {
                 return undefined;
               }
@@ -113,12 +114,12 @@ class Auth0 {
 
     async serverAuth(req) {
       if(req.headers.cookie) {
+
         const token = getCookieFromReq(req, 'jwt');
         const verifiedToken = await this.verifyToken(token);
         
         return verifiedToken;
       }
-
       return undefined;
   }
 }

@@ -1,9 +1,11 @@
 // Render Prop
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, FormGroup, Label } from 'reactstrap';
-import PortInput from '../forn/PortInput';
+import { Button, Alert } from 'reactstrap';
+import PortInput from '../form/PortInput';
 import PortDate from '../form/PortDate';
+
+
 
  const validateInputs = (values) => {
     let errors  = {};
@@ -11,23 +13,12 @@ import PortDate from '../form/PortDate';
     Object.entries(values).forEach((objectKey) => {
 
       if(!values[key]) {
-        errors[key] = `field ${key} is required!`]
+        errors[key] = `field ${key} is required!`;
       }
     });
 
     return errors;
   }
-
-//     let errors = {};
-//     if (!values.email) {
-//       errors.email = 'Required';
-//     } else if (
-//       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-//     ) {
-//       errors.email = 'Invalid email address';
-//     }
-    return errors;
-}
 
 
 const INITIAL_VALUES = {  title: '', 
