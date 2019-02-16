@@ -1,6 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+import { FormGroup, Label, Button } from 'reactstrap';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -8,10 +9,20 @@ export default class PortDate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dateValue: moment()
+      dateValue: moment(),
+      isHidden: false
     };
 
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  setFieldTouched(date, touched) {
+    const { setFieldValue, setFieldTouched } = this.props.form;
+    const { name } = this.props.field;
+
+    
+    setFieldValue(name, date, true);
+    setFieldTouched(name, touched, true);
   }
 
   handleChange(date) {
@@ -26,21 +37,51 @@ export default class PortDate extends React.Component {
     setFieldTouched(name, true, true);
   }
 
-  render() {
-const { label } = this.props;
+  toggleDate(date) {
+    const { setFieldValue, setFieldTouched } =this.props.form;
+    const { name } = this.props.field;
+
+    this.setState({
+      isHidden: !this.state.isHidden
+    });
+
+    setFieldValue(name, date, true);
+    setFieldTouched(name, true, true); 
+  }
+
+render() {
+  const { canBeDisabled, label, field, form: { touched, errors} } = this.props;
+  const { isHidden, dateValue } = this.state;
 
     return (
       <FormGroup>    
         <Label>{label}</Label>  
-        <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleChange}
-        peekNextMonth
-        showMonthDropdown
-        showYearDropdown
-        maxDate={moment()}
-        dropdownMode="select"
-      />
+        <div className="input-group">
+        { isHidden &&
+          <DatePicker
+            selected={dateValue}
+            onChange={this.handleChange}
+            peekNextMonth
+            showMonthDropdown
+            showYearDropdown
+            maxDate={moment()}
+            dropdownMode="select"
+         />
+        }
+      </div>
+      { canBeDisabled && !isHidden && <Button onClick={() => this.toggleDate()}> Still Working Here...</Button>}
+
+
+        { canBeDisabled && isHidden && 
+          <React.Fragment>
+            <span> Still Working Here</span>
+            <Button onClick={() => this.toggleDate()}> Set End Date </Button>
+          </React.Fragment>
+        } 
+
+
+      { touched[field.name] &&
+        errors[field.name] && <div className="error">{errors[field.name]}</div>}
       </FormGroup>
     );
   }

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 import { getCookieFromReq  } from '../helpers/utils';
 
-const setAuthHeader = () => {
+const setAuthHeader = (req) => {
     const token = req ? getCookieFromReq(req, 'jwt') : Cookie.getJSON('jwt');
 
     if (token) {

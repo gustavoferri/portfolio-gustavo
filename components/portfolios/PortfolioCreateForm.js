@@ -10,12 +10,17 @@ import PortDate from '../form/PortDate';
  const validateInputs = (values) => {
     let errors  = {};
 
-    Object.entries(values).forEach((objectKey) => {
-
-      if(!values[key]) {
-        errors[key] = `field ${key} is required!`;
+    Object.entries(values).forEach(([key, value]) => {
+      if(!values[key] & key !== 'endDate') {
+        errors[key] = `Field ${key} is required!`;
       }
     });
+    const startDate = values.startDate;
+    const endDate = values.endDate;
+
+    if (startDate && endDate && endDate.isBefore(startDate)) {
+      errors.endDate = 'End Date cannot be before start date!!!';
+    }
 
     return errors;
   }
@@ -28,17 +33,13 @@ const INITIAL_VALUES = {  title: '',
                           startDate: '', 
                           endDate: '' };
 
-const PortfolioCreateForm = () => (
+const PortfolioCreateForm = (props) => (
   <div>
     <Formik
       initialValues={INITIAL_VALUES}
       validate={validateInputs}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={props.onSubmit}
+
     >
       {({ isSubmitting }) => (
         <Form>
@@ -69,6 +70,7 @@ const PortfolioCreateForm = () => (
 
             <Field name="endDate"
                   label="End Date"
+                  canBeDisabled={true}
                   component={PortDate} />
   
 
