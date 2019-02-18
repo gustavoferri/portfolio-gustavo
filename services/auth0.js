@@ -82,13 +82,12 @@ class Auth0 {
           if (!decodedToken) { return undefined; }
 
           const jwks = await this.getJWKS();   
-          console.log(jwks);
           const jwk = jwks.keys[0];
 
           // BUILD CERTIFICATE
           let cert = jwk.x5c[0];
           cert = cert.match(/.{1,64}/g).join('\n');
-          cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE------\n`;
+          cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
 
           if (jwk.kid === decodedToken.header.kid){
               try {
