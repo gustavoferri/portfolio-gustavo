@@ -12,6 +12,11 @@ const handle = routes.getRequestHandler(app);
 const config = require('./config');
 
 
+const Book = require('./models/book');
+const bodyParser = require('body-parser');
+
+const bookRoutes = require('./routes/book');
+
 const secretData = [
     {
         title: 'SecretData 1',
@@ -30,6 +35,9 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
  app.prepare()
 .then(() => {
   const server = express();
+  server.use(bodyParser.json());
+
+  server.use('/api/v1/books/', bookRoutes)
 
   server.get('/api/v1/secret', authService.checkJWT,  (req, res) => {
     return res.json(secretData);
@@ -45,7 +53,7 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
 
   server.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError' ) {
-      res.status(401).send({title: 'Unauthorized', detail: 'Unauthorized Access!' });
+      res.status(401).send({title: 'Não autorizado', detail: 'Acesso não autorizado!' });
     }
   });
 

@@ -19,7 +19,7 @@ import auth0 from '../../services/auth0';
 
          return (
             <Link href={route}>
-                <a className="nav-link port-navbar-link"> {title} </a>
+                <a className={`nav-link port-navbar-link ${className}`}> {title} </a>
             </Link>  
         )
     }
@@ -66,7 +66,7 @@ export default class Header extends React.Component {
 
     return (
       <div>
-        <Navbar className={`port-navbar port-nav-base absolute &{className}`} color="transparent" dark expand="md">
+        <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
           <NavbarBrand className="port-navbar-brand" href="/">Gustavo Ferri</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

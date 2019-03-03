@@ -49,7 +49,7 @@ class Portfolios extends React.Component {
         
         return (
           <BaseLayout {...this.props.auth}>
-            <BasePage className="portfolio-page" title="Portfolio">
+            <BasePage className="portfolio-page" title="Portfolios">
                 <Row>
                     { this.renderPosts(posts) }
                 </Row>
