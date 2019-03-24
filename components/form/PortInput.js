@@ -8,7 +8,6 @@ const PortInput = ({
     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
   }) => { 
-    debugger;
     return (
     <FormGroup>
         <Label>{label}</Label>
