@@ -9,7 +9,7 @@ const validateInputs = (values) => {
 
 
   Object.entries(values).forEach(([key, value])=> {
-      if (!values[key] && (values[key] === 'startDate' || values[key] === 'endDate')) { 
+      if (!values[key] && key !== 'endDate') { 
         errors[key] = `O campo ${key} é obrigatório!`;
       }
   });
@@ -18,7 +18,7 @@ const validateInputs = (values) => {
   const endDate = values.endDate;
 
 if (startDate && endDate && endDate.isBefore(startDate)) {
-  errors.endDate = 'End Date cannot be before start date!!!';
+  errors.endDate = 'A data final tem que ser maior que a data de início!!!';
 }
 
 
