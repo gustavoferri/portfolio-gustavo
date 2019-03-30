@@ -26,21 +26,12 @@ if (startDate && endDate && endDate.isBefore(startDate)) {
   return errors;
 }
 
-const INITIAL_VALUES =  { title: '',
-                          company: '',
-                          location: '', 
-                          position: '', 
-                          description: '',
-                          startDate: '', 
-                          endDate: ''  };
-
-
-const PortfolioCreateForm = (props) => (
+const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
   <FormGroup>
     <Formik
-      initialValues={INITIAL_VALUES}
+      initialValues={initialValues}
       validate={validateInputs}
-      onSubmit={props.onSubmit}
+      onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
         <Form>
@@ -72,9 +63,9 @@ const PortfolioCreateForm = (props) => (
                      label="End Date"
                      canBeDisabled={true}
                      component={PortDate} />
-              { props.error &&
+              { error &&
                 <Alert color="danger">
-                 {props.error}
+                 {error}
                 </Alert>
               }
               <Button color="success" size="lg" type="submit" disabled={isSubmitting}>

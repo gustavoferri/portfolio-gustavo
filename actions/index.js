@@ -16,12 +16,12 @@ const setAuthHeader = (req) => {
         return { headers: {'authorization': `Bearer ${token}`}};
     }
     return undefined;
-}
+    }
 
     const rejectPromise = (resError) => {
         let error = {};
 
-        if (resError && resError.response && resError.response) {
+        if (resError && resError.response && resError.response.data) {
             error = resError.response.data;
         } else {
             error = resError;
@@ -32,7 +32,7 @@ const setAuthHeader = (req) => {
 
 
     export const getSecretData = async (req) => {
-    const url = '/secret';
+     const url = '/secret';
 
     return await axiosInstance.get(url, setAuthHeader(req)).then(response => response.data);
     }
@@ -40,6 +40,12 @@ const setAuthHeader = (req) => {
     export const getPortfolios = async () => {
      return await axiosInstance.get('/portfolios').then(response => response.data);
     }
+
+     
+    export const getPortfolioById = async (id) => {
+     return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
+    }
+
 
     export const createPortfolio = async (portfolioData) => {
      return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
