@@ -15,7 +15,7 @@ const INITIAL_VALUES =  { title: '',
                           location: '', 
                           position: '', 
                           description: '',
-                          startDate: '', 
+                          startDate: moment, 
                           endDate: ''  };
 
 
@@ -40,7 +40,7 @@ class PortfolioNew extends React.Component {
            Router.pushRoute('/portfolios');
          })
          .catch((err) => {
-           const error = err.message || 'Server Error!'
+           const error = err.message || 'Server Error!';
            setSubmitting(false);
           this.setState({error});
          })

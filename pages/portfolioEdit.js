@@ -5,7 +5,7 @@ import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 
 import { Row, Col } from 'reactstrap';
 
-import { createPortfolio, getPortfolioById } from '../actions';
+import { updatePortfolio, getPortfolioById } from '../actions';
 
 import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
@@ -13,18 +13,17 @@ import { Router } from '../routes';
 
 class PortfolioEdit extends React.Component {
 
-    static async getInitialProps({query}) {
-        let portfolio = {};
+  static async getInitialProps({query}) {
+      let portfolio = {};
 
-        try {
+      try {
         portfolio = await getPortfolioById(query.id);   
-        } catch (error) {
-          console.error(err);
-        }
-        // console.log(portfolio);
-        return {portfolio};
-    }
-
+      } catch (error) {
+        console.error(err);
+      }
+      //console.log(portfolio);
+      return {portfolio};
+  }
 
     constructor(props){
       super();
@@ -33,22 +32,24 @@ class PortfolioEdit extends React.Component {
       error: undefined
       }
 
-      this.savePortfolio = this.savePortfolio.bind(this);
+      this.updatePortfolio = this.updatePortfolio.bind(this);
   }
-      savePortfolio(portfolioData, {setSubmitting}) {
-        // setSubmitting(true);
 
-        //  createPortfolio(portfolioData)
-        //  .then((portfolio) => {
-        //   setSubmitting(false);
-        //    this.setState({error: undefined});
-        //    Router.pushRoute('/portfolios');
-        //  })
-        //  .catch((err) => {
-        //    const error = err.message || 'Server Error!'
-        //    setSubmitting(false);
-        //   this.setState({error});
-        //  })
+  updatePortfolio(portfolioData, {setSubmitting}) {
+    setSubmitting(true);
+    debugger;
+
+    updatePortfolio(portfolioData)
+      .then((portfolio) => {
+        setSubmitting(false);
+        this.setState({error: undefined});
+        Router.pushRoute('/portfolios');
+     })
+    .catch((err) => {
+        const error = err.message || 'Server Error!';
+        setSubmitting(false);
+        this.setState({error});
+        })
     }
 
     render() {
@@ -57,12 +58,12 @@ class PortfolioEdit extends React.Component {
 
       return (
         <BaseLayout {...this.props.auth}>
-            <BasePage className="portfolio-create-page" title="Eu sou a página Portfolio">
+            <BasePage className="portfolio-create-page" title="Atualizar Portfolio">
               <Row>
                 <Col md="6">
                 <PortfolioCreateForm initialValues={portfolio}
                                      error={error} 
-                                     onSubmit={this.savePortfolio} />
+                                     onSubmit={this.updatePortfolio} />
                 </Col>
               </Row>
             </BasePage>

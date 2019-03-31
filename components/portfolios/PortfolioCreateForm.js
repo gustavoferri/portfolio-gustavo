@@ -4,8 +4,11 @@ import { Button, FormGroup, Alert } from 'reactstrap';
 import PortInput from '../form/PortInput';
 import PortDate from '../form/PortDate';
 
+import moment from 'moment';
+
 const validateInputs = (values) => {
   let errors = {};
+  debugger;
 
 
   Object.entries(values).forEach(([key, value])=> {
@@ -14,14 +17,12 @@ const validateInputs = (values) => {
       }
   });
 
-  const startDate = values.startDate;
-  const endDate = values.endDate;
+  const startDate = moment(values.startDate);
+  const endDate = moment(values.endDate);
 
 if (startDate && endDate && endDate.isBefore(startDate)) {
-  errors.endDate = 'A data final tem que ser maior que a data de início!!!';
+  errors.endDate = 'A data final não pode ser antes que a data de início!!!';
 }
-
-
 
   return errors;
 }
@@ -57,11 +58,13 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
 
               <Field name="startDate" 
                      label="Start Date"
+                     initialValues={initialValues.startDate}
                      component={PortDate} />
 
               <Field name="endDate" 
                      label="End Date"
                      canBeDisabled={true}
+                     initialValues={initialValues.endDate}
                      component={PortDate} />
               { error &&
                 <Alert color="danger">

@@ -46,9 +46,14 @@ const setAuthHeader = (req) => {
      return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
     }
 
-
     export const createPortfolio = async (portfolioData) => {
      return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
      .then(response => response.data)
      .catch(error => rejectPromise(error))
+}
+
+export const updatePortfolio = async (portfolioData) => {
+    return await axiosInstance.patch(`/portfolios/${portfolio._id}`, portfolioData, setAuthHeader())
+    .then(response => response.data)
+    .catch(error => rejectPromise(error))
 }
