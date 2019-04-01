@@ -2,9 +2,12 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
 import { Link } from '../routes'
-import { Col, Row, Card, CardHeader, CardBody, CardText, CardTitle } from 'reactstrap';
+import { Col, Row, Card, CardHeader, CardBody, CardText, CardTitle, Button } from 'reactstrap';
+
+import { Router } from '../routes';
 
 import { getPortfolios } from '../actions';
+// import { Router } from 'express';
 
 
 class Portfolios extends React.Component {
@@ -33,7 +36,14 @@ class Portfolios extends React.Component {
                                     <p className="portfolio-card-city">{portfolio.location} </p>
                                     <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
                                     <CardText className="portfolio-card-text">{portfolio.description}</CardText>
-                                    <div className="readMore"> </div>
+                                    <div className="readMore">
+                                    {
+                                        <React.Fragment>
+                                            <Button onClick={() => Router.pushRoute(`/portfolios/${portfolio._id}/edit`)} color="warning">Edit</Button>{' '}
+                                            <Button color="danger">Delete</Button>
+                                        </React.Fragment>
+                                    }
+                                 </div>
                                 </CardBody>
                             </Card>
                         </span>
@@ -49,6 +59,10 @@ class Portfolios extends React.Component {
         return (
           <BaseLayout {...this.props.auth}>
             <BasePage className="portfolio-page" title="Portfolios">
+                <Button onClick={() => Router.pushRoute('/portfolioNew')}
+                 color="success"
+                 className="create-port-btn">Criar Portfolio
+                 </Button>
                 <Row>
                     { this.renderPortfolios(portfolios) }
                 </Row>

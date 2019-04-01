@@ -53,7 +53,7 @@ const setAuthHeader = (req) => {
 }
 
 export const updatePortfolio = async (portfolioData) => {
-    return await axiosInstance.patch(`/portfolios/${portfolio._id}`, portfolioData, setAuthHeader())
+    return await axiosInstance.patch(`/portfolios/${portfolioData._id}`, portfolioData, setAuthHeader())
     .then(response => response.data)
     .catch(error => rejectPromise(error))
 }

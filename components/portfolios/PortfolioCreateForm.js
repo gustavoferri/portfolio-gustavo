@@ -8,8 +8,6 @@ import moment from 'moment';
 
 const validateInputs = (values) => {
   let errors = {};
-  debugger;
-
 
   Object.entries(values).forEach(([key, value])=> {
       if (!values[key] && key !== 'endDate') { 
