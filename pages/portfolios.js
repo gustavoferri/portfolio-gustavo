@@ -6,9 +6,8 @@ import { Col, Row, Card, CardHeader, CardBody, CardText, CardTitle, Button } fro
 
 import { Router } from '../routes';
 
-import { getPortfolios } from '../actions';
+import { getPortfolios, deletePortfolio } from '../actions';
 // import { Router } from 'express';
-
 
 class Portfolios extends React.Component {
 
@@ -18,10 +17,27 @@ class Portfolios extends React.Component {
         try {
           portfolios = await getPortfolios();
         } catch (err) {
-            console.error(err);
+          console.error(err);
         }
 
         return {portfolios};
+    }
+
+    displayDeleteWarning(portfolioId) {
+       const isConfirm = confirm('Você esta prestes a deletar o portfolio, tem certeza disso???');
+
+       if(isConfirm){
+           // delete portfolio here
+           this.deletePortfolio(portfolioId);
+       }
+    }
+
+    deletePortfolio(portfolioId) {
+        deletePortfolio(portfolioId)
+        .then(() => {
+        Router.pushRoute('/portfolios')
+        })
+        .catch(err => console.error(err));
     }
 
     renderPortfolios(portfolios) {
@@ -42,8 +58,8 @@ class Portfolios extends React.Component {
                                     <div className="readMore">
                                     { isAuthenticated && isSiteOwner &&
                                         <React.Fragment>
-                                            <Button onClick={() => Router.pushRoute(`/portfolios/${portfolio._id}/edit`)} color="warning">Edit</Button>
-                                            <Button color="danger">Delete</Button>
+                                            <Button onClick={() => Router.pushRoute(`/portfolios/${portfolio._id}/edit`)} color="warning">Edit</Button> {''}
+                                            <Button onClick={() => this.displayDeleteWarning(portfolio._id)} color="danger">Delete</Button>
                                         </React.Fragment>
                                     }
                                  </div>
