@@ -54,7 +54,7 @@ class Portfolios extends React.Component {
             return (
                 <Col key={index} md="4">
                     <PortfolioCard portfolio={portfolio}>
-                    { isAuthenticated && isSiteOwner &&
+                        { isAuthenticated && isSiteOwner &&
                            <React.Fragment>
                               <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button> {''}
                               <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>

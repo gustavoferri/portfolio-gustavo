@@ -7,7 +7,6 @@ class PortfolioCardDetail extends React.Component {
   render() {
       const { isOpen, toggle, portfolio } = this.props;
 
-
     return (
       <div>
         <Modal isOpen={isOpen} toggle={toggle}>

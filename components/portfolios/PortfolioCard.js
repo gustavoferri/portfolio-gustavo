@@ -26,7 +26,7 @@ export default class PortfolioCard extends React.Component {
         return (
             <span onClick={this.handleToggle}>
 
-                <PortfolioCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen} />
+                <PortfolioCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/>
 
                 <Card className="portfolio-card">
                 <CardHeader className="portfolio-card-header">{portfolio.position}</CardHeader>
