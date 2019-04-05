@@ -56,13 +56,13 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
 
               <Field name="startDate" 
                      label="Start Date"
-                     initialValues={initialValues.startDate}
+                     initialDate={initialValues.startDate}
                      component={PortDate} />
 
               <Field name="endDate" 
                      label="End Date"
                      canBeDisabled={true}
-                     initialValues={initialValues.endDate}
+                     initialDate={initialValues.endDate}
                      component={PortDate} />
               { error &&
                 <Alert color="danger">
