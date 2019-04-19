@@ -1,7 +1,6 @@
 
 const Portfolio = require('../models/portfolio');
 
-
 exports.getPortfolios = (req, res) => {
 
   Portfolio.find({})

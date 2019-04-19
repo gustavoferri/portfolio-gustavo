@@ -24,7 +24,6 @@ class PortfolioEdit extends React.Component {
       //console.log(portfolio);
       return {portfolio};
   }
-
     constructor(props){
       super();
 

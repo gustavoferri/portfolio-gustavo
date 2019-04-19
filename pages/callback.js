@@ -3,6 +3,7 @@ import BaseLayout from '../components/layouts/BaseLayout';
 
 import auth0Client from '../services/auth0';
 import { withRouter } from 'next/router';
+import BasePage from '../components/BasePage';
 
 class Callback extends React.Component {
 
@@ -14,7 +15,9 @@ class Callback extends React.Component {
     render() {
       return (
           <BaseLayout>
-            <h1> Verificando os dados de login ... </h1>
+            <BasePage>
+                <h1> Verificando os dados de login ... </h1>
+            </BasePage>
           </BaseLayout>
         
       )
