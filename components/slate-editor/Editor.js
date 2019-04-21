@@ -1,6 +1,10 @@
-import React from 'react'
-import { Editor } from 'slate-react'
-import { Value } from 'slate'
+import React from 'react';
+
+import HoverMenu from './HoverMenu';
+
+import { Editor } from 'slate-react';
+import { Value } from 'slate';
+import { renderMark } from './renderers'; 
 
 // Create our initial value...
 const initialValue = Value.fromJSON({
@@ -47,59 +51,42 @@ function CodeNode(props) {
     }
 
     componentDidMount() {
-        this.setState({isLoaded: true})
+      this.updateMenu();
+      this.setState({isLoaded: true})
     }
+
+    componentDidUpdate = () => {
+      this.updateMenu()
+    };
 
     // On change, update the app's React state with the new editor value.
     onChange = ({ value }) => {
       this.setState({ value })
     }
-    onKeyDown = (event, editor, next) => {
-        if (!event.ctrlKey) return next()
-    
-        // Decide what to do based on the key code...
-        switch (event.key) {
-          // When "B" is pressed, add a "bold" mark to the text.
-          case 'b': {
-            event.preventDefault()
-            editor.toggleMark('bold')
-            break;
-          }
-          // When "`" is pressed, keep our existing code block logic.
-          case 'x': {
-            const isCode = editor.value.blocks.some(block => block.type == 'code')
-            event.preventDefault()
-            editor.setBlocks(isCode ? 'paragraph' : 'code');
-            break;
-          }
-          // Otherwise, let other plugins handle it.
-          default: {
-            return next()
-          }
-        }
+
+    updateMenu = () => {
+      const menu = this.menu
+      if (!menu) return
+  
+      const { value } = this.state
+      const { fragment, selection } = value
+  
+      if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+        menu.removeAttribute('style')
+        return
       }
-
-    // Add a `renderNode` method to render a `CodeNode` for code blocks.
-    renderNode = (props, editor, next) => {
-        switch (props.node.type) {
-        case 'code':
-            return <CodeNode {...props} />
-        case 'paragraph':
-            return <p {...props.attributes}>{props.children} </p>
-        default:
-            return next()
-        }
+  
+      const native = window.getSelection()
+      const range = native.getRangeAt(0)
+      const rect = range.getBoundingClientRect()
+      menu.style.opacity = 1
+      menu.style.top = `${rect.top + window.pageYOffset - menu.offsetHeight}px`
+  
+      menu.style.left = `${rect.left +
+        window.pageXOffset -
+        menu.offsetWidth / 2 +
+        rect.width / 2}px`
     }
-
-    // Add a `renderMark` method to render marks.
-    renderMark = (props, editor, next) => {
-        switch (props.mark.type) {
-        case 'bold':
-            return <BoldMark {...props} />
-        default:
-            return next()
-        }
-     }
 
     // Render the editor.
     render() {
@@ -108,13 +95,25 @@ function CodeNode(props) {
       return  (
       <React.Fragment>
         { isLoaded &&
-            <Editor value={this.state.value} 
-            onChange={this.onChange} 
-            onKeyDown={this.onKeyDown}
-            renderNode={this.renderNode} 
-            renderMark={this.renderMark} />
+            <Editor placeholder="Enter some text..."
+                    value={this.state.value} 
+                    onChange={this.onChange} 
+                    renderMark={renderMark}
+                    renderEditor={this.renderEditor}
+                    />
         }
         </React.Fragment>
       )
     }
+
+    renderEditor = (props, editor, next) => {
+      const children = next()
+      return (
+        <React.Fragment>
+          {children}
+          <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+        </React.Fragment>
+      )
+    }
+
   }
