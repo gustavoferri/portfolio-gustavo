@@ -4,7 +4,7 @@ import HoverMenu from './HoverMenu';
 
 import { Editor } from 'slate-react';
 import { initialValue } from './initial-value';
-import { renderMark } from './renderers'; 
+import { renderMark, renderNode } from './renderers'; 
 
   // Define a React component renderer for our code blocks.
 function CodeNode(props) {
@@ -77,6 +77,7 @@ function CodeNode(props) {
                     value={this.state.value} 
                     onChange={this.onChange} 
                     renderMark={renderMark}
+                    renderNode={renderNode}
                     renderEditor={this.renderEditor}
                     />
         }
