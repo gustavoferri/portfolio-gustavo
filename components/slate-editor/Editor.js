@@ -3,30 +3,8 @@ import React from 'react';
 import HoverMenu from './HoverMenu';
 
 import { Editor } from 'slate-react';
-import { Value } from 'slate';
+import { initialValue } from './initial-value';
 import { renderMark } from './renderers'; 
-
-// Create our initial value...
-const initialValue = Value.fromJSON({
-    document: {
-      nodes: [
-        {
-          object: 'block',
-          type: 'paragraph',
-          nodes: [
-            {
-              object: 'text',
-              leaves: [
-                {
-                  text: 'A line of text in a paragraph.',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  });
 
   // Define a React component renderer for our code blocks.
 function CodeNode(props) {
