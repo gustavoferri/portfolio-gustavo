@@ -85,6 +85,7 @@ function onClickMark(event, type, editor) {
     return (
       <Button
         active={isActive}
+        reversed
         onMouseDown={event => onClickBlock(event, type, editor)}
       >
         <Icon>{icon}</Icon>
