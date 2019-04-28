@@ -1,5 +1,8 @@
 
-
+.controll-menu h1 {
+    float: left;
+    font-weight: 900;
+}
 .controll-menu {
     text-align: right;
     border-bottom: 1px solid gray;
@@ -9,10 +12,6 @@
 .title {
     float: left;
     font-weight: bold;
-}
-.controll-menu h1 {
-    float: left;
-    font-weight: 900;
 }
 
 .status-box {

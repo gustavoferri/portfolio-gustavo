@@ -16,9 +16,9 @@ class BlogEditor extends React.Component {
 
     saveBlog(heading) {
 
-        debugger;
-        heading.title,
-        heading.subtitle
+        const blog  = {};
+        blog.title = heading.title;
+        blog.subtitle = heading.subtitle;
 
         console.log('Calling saveBlog()');
     }
@@ -27,7 +27,7 @@ class BlogEditor extends React.Component {
       return (
         <BaseLayout {...this.props.auth}>
             <BasePage containerClass="editor-wrapper" className="blog-editor-page">
-                <SlateEditor />
+                <SlateEditor save={this.saveBlog} />
             </BasePage>
         </BaseLayout>
       )

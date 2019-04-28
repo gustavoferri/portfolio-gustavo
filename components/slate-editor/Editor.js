@@ -66,10 +66,18 @@ return <strong>{props.children}</strong>
         menu.offsetWidth / 2 +
         rect.width / 2}px`
     }
+
     getTitle() {
+      const { value } = this.state;
+      const firstBlock = value.document.getBlocks().get(0);
+      const secondBlock = value.document.getBlocks().get(1);
+
+      const title = firstBlock && firstBlock.text ? firstBlock.text : 'sem título';
+      const subtitle = secondBlock && secondBlock.text ? secondBlock.text : 'sem subtitulo';
+
       return {
-        title: 'Some title',
-        subtile: 'Some subtitle'
+        title,
+        subtitle
       }
     }
 
@@ -77,6 +85,8 @@ return <strong>{props.children}</strong>
       debugger;
       const {save} = this.props;
       const headingValues = this.getTitle();
+    
+      save(headingValues);
     }
 
     // Render the editor.
