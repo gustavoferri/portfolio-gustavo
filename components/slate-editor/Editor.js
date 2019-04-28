@@ -16,10 +16,10 @@ function CodeNode(props) {
     )
   }
 
-     // Define a React component to render bold text with.
-    function BoldMark(props) {
-    return <strong>{props.children}</strong>
-    }
+  // Define a React component to render bold text with.
+function BoldMark(props) {
+return <strong>{props.children}</strong>
+}
 
   // Define our app...
   export default class SlateEditor extends React.Component {
@@ -66,6 +66,18 @@ function CodeNode(props) {
         menu.offsetWidth / 2 +
         rect.width / 2}px`
     }
+    getTitle() {
+      return {
+        title: 'Some title',
+        subtile: 'Some subtitle'
+      }
+    }
+
+    save()  {
+      debugger;
+      const {save} = this.props;
+      const headingValues = this.getTitle();
+    }
 
     // Render the editor.
     render() {
@@ -74,7 +86,8 @@ function CodeNode(props) {
       return  (
       <React.Fragment>
         { isLoaded &&
-            <Editor placeholder="Enter some text..."
+            <Editor {...this.props}
+                    placeholder="Digite algum texto..."
                     value={this.state.value} 
                     onChange={this.onChange} 
                     renderMark={renderMark}
@@ -90,7 +103,7 @@ function CodeNode(props) {
       const children = next()
       return (
         <React.Fragment>
-          <ControllMenu></ControllMenu>
+          <ControllMenu save={() => this.save()}></ControllMenu>
           {children}
           <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
         </React.Fragment>

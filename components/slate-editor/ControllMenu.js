@@ -8,7 +8,7 @@ const ControllMenu = (props) => {
             <div className="status-box">
                 Salvo
              </div>
-             <Button color="success">Salvar</Button>
+             <Button onClick={props.save} color="success">Salvar</Button>
         </div>
     )
 }

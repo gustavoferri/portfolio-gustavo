@@ -2,7 +2,6 @@ import { Button, Icon } from '../components';
 
 const DEFAULT_NODE = 'paragraph'
 
-
 function onClickMark(event, type, editor) {
     event.preventDefault()
     editor.toggleMark(type)
