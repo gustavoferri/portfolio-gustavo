@@ -1,6 +1,7 @@
 import React from 'react';
 
 import HoverMenu from './HoverMenu';
+import ControllMenu from './ControllMenu';
 
 import { Editor } from 'slate-react';
 import { initialValue } from './initial-value';
@@ -89,6 +90,7 @@ function CodeNode(props) {
       const children = next()
       return (
         <React.Fragment>
+          <ControllMenu></ControllMenu>
           {children}
           <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
         </React.Fragment>
