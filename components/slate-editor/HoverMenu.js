@@ -8,7 +8,6 @@ class HoverMenu extends React.Component {
 
   renderMarkButton(type, icon) {
     const { editor } = this.props;
-
     return renderMarkButton(type, icon, editor);
   }
 

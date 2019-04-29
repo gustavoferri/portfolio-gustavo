@@ -82,7 +82,6 @@ return <strong>{props.children}</strong>
     }
 
     save()  {
-      debugger;
       const {save} = this.props;
       const headingValues = this.getTitle();
     
@@ -110,10 +109,11 @@ return <strong>{props.children}</strong>
     }
 
     renderEditor = (props, editor, next) => {
-      const children = next()
+      const children = next();
+      const { isLoading } = props;
       return (
         <React.Fragment>
-          <ControllMenu save={() => this.save()}></ControllMenu>
+          <ControllMenu isLoading={isLoading} save={() => this.save()}></ControllMenu>
           {children}
           <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
         </React.Fragment>

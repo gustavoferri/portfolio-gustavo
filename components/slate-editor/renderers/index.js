@@ -31,6 +31,8 @@ function onClickMark(event, type, editor) {
     const { value } = editor
     const { document } = value
 
+    
+
     // Handle everything but list buttons.
     if (type !== 'bulleted-list' && type !== 'numbered-list') {
       const isActive = hasBlock(type, value)
