@@ -4,7 +4,7 @@ const BLOCK_TAGS = {
     ul: 'bulleted-list',
     li: 'list-item',
     ol: 'number-list',
-    h1: 'heading-two',
+    h1: 'heading-one',
     h2: 'heading-two'
   }
   
@@ -12,7 +12,8 @@ const BLOCK_TAGS = {
   const MARK_TAGS = {
     em: 'italic',
     strong: 'bold',
-    u: 'underline',
+    u: 'underlined',
+    code: 'code'
   }
   
   const rules = [
@@ -67,7 +68,7 @@ const BLOCK_TAGS = {
               return <strong>{children}</strong>
             case 'italic':
               return <em>{children}</em>
-            case 'underline':
+            case 'underlined':
               return <u>{children}</u>
               case 'code':
               return <code>{children}</code>
