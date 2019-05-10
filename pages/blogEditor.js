@@ -6,7 +6,7 @@ import withAuth from '../components/hoc/withAuth';
 
 import SlateEditor from '../components/slate-editor/Editor';
 
-import { saveBlog } from '../actions';
+import { createBlog } from '../actions';
 
 class BlogEditor extends React.Component {
 
@@ -29,7 +29,6 @@ class BlogEditor extends React.Component {
         this.setState({isSaving: true});
 
         createBlog(blog).then(data => {
-            debugger;
             this.setState({isSaving: false});
             console.log(data);
         }).catch((err) => {
@@ -41,6 +40,7 @@ class BlogEditor extends React.Component {
 
     render() {
         const { isSaving } = this.state;
+
       return (
         <BaseLayout {...this.props.auth}>
             <BasePage containerClass="editor-wrapper" className="blog-editor-page">

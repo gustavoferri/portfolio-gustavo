@@ -8,7 +8,7 @@ const ControllMenu = (props) => {
             <div className="status-box">
                { props.isLoading ? 'Salvando...' : 'Salvo' }
              </div>
-             <Button onClick={props.save} color="success">Salvar</Button>
+             <Button disabled={props.isLoading} onClick={props.save} color="success">Salvar</Button>
         </div>
     )
 }
