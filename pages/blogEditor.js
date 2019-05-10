@@ -20,18 +20,22 @@ class BlogEditor extends React.Component {
         this.saveBlog = this.saveBlog.bind(this);
     }
 
-    saveBlog(heading) {
-
+    saveBlog(story, heading) {
         const blog  = {};
         blog.title = heading.title;
         blog.subtitle = heading.subtitle;
+        blog.story = story;
 
         this.setState({isSaving: true});
 
-        saveBlog().then(data => {
+        createBlog(blog).then(data => {
             debugger;
             this.setState({isSaving: false});
-            console.log(data)
+            console.log(data);
+        }).catch((err) => {
+            this.setState({isSaving: false});
+            const message = err.message || 'Server Error!';
+            console.error(message);
         })       
     }
 

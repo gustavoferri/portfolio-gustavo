@@ -5,7 +5,11 @@ import ControllMenu from './ControllMenu';
 
 import { Editor } from 'slate-react';
 import { initialValue } from './initial-value';
-import { renderMark, renderNode } from './renderers'; 
+import { renderMark, renderNode } from './renderers';
+import Html from 'slate-html-serializer';
+import { rules } from './rules';
+
+const html = new Html({ rules })
 
   // Define a React component renderer for our code blocks.
 function CodeNode(props) {
@@ -82,9 +86,12 @@ return <strong>{props.children}</strong>
     }
 
     save()  {
+      const { value } = this.state;
       const {save} = this.props;
       const headingValues = this.getTitle();
+      const text = html.serialize(value);
     
+      debugger;
       save(headingValues);
     }
 

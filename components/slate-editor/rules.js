@@ -16,7 +16,7 @@ const BLOCK_TAGS = {
     code: 'code'
   }
   
-  const rules = [
+ export const rules = [
     {
       deserialize(el, next) {
         const type = BLOCK_TAGS[el.tagName.toLowerCase()]
