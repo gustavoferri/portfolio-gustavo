@@ -12,25 +12,10 @@ import { Value } from 'slate';
 
 const html = new Html({ rules })
 
-  // Define a React component renderer for our code blocks.
-function CodeNode(props) {
-    return (
-      <pre {...props.attributes}>
-        <code>{props.children}</code>
-      </pre>
-    )
-  }
-
-  // Define a React component to render bold text with.
-function BoldMark(props) {
-return <strong>{props.children}</strong>
-}
-
-  // Define our app...
   export default class SlateEditor extends React.Component {
     // Set the initial value when the app is first constructed.
     state = {
-      value: initialValue,
+      value: Value.create(),
       isLoaded: false
     }
 
