@@ -1,4 +1,3 @@
-
 const Portfolio = require('../models/portfolio');
 
 exports.getPortfolios = (req, res) => {
@@ -38,9 +37,11 @@ exports.savePortfolio = (req, res) => {
        if(err) {
          return res.status(422).send(err);
        }
+
        return res.json(createdPortfolio);
     });
 }
+
 
 exports.updatePortfolio = (req, res) => {
   const portfolioId = req.params.id;
@@ -56,6 +57,7 @@ exports.updatePortfolio = (req, res) => {
       if(err) {
         return res.status(422).send(err);
       }
+      
       return res.json(savedPortfolio);
     });
   })
