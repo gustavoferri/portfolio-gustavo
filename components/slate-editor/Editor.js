@@ -9,6 +9,7 @@ import { renderMark, renderNode } from './renderers';
 import Html from 'slate-html-serializer';
 import { rules } from './rules';
 import { Value } from 'slate';
+import { EventEmitter } from 'events';
 
 const html = new Html({ rules })
 
@@ -34,6 +35,18 @@ const html = new Html({ rules })
     // On change, update the app's React state with the new editor value.
     onChange = ({ value }) => {
       this.setState({ value })
+    }
+
+    onKeyDown(event, change, next) {
+      const {isLoading} = this.props;
+
+      if (isLoading && event.which === 83 && (event.ctrlKey || event.metaKey)) {
+        event.preventDefault();
+        this.save();
+        return;
+      }
+
+      next();
     }
 
     updateMenu = () => {
@@ -94,6 +107,7 @@ const html = new Html({ rules })
                     placeholder="Digite algum texto..."
                     value={this.state.value} 
                     onChange={this.onChange} 
+                    onKeyDown={(event, change, next) => this.onKeyDown(event, change, next)}
                     renderMark={renderMark}
                     renderNode={renderNode}
                     renderEditor={this.renderEditor}
