@@ -18,7 +18,7 @@
     "auth0-js": "^9.10.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "emotion": "^10.0.9",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
