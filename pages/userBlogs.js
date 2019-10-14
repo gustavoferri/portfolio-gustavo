@@ -24,10 +24,10 @@ class UserBlogs extends React.Component {
     }
 
 changeBlogStatus() {
-    alert('Mudando Status do Blog');
+    alert('Mudando Status do Post');
 }
     deleteBlog() {
-        alert('Deletando Blog');
+        alert('Deletando o Post');
     }
 
     separateBlogs(blogs) {

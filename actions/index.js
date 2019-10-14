@@ -41,7 +41,7 @@ const setAuthHeader = (req) => {
      return await axiosInstance.get('/portfolios').then(response => response.data);
     }
 
-     
+
     export const getPortfolioById = async (id) => {
      return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
     }
