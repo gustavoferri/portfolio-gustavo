@@ -16,7 +16,7 @@
     "@zeit/next-sass": "^1.0.1",
     "async-lock": "^1.2.0",
     "auth0-js": "^9.10.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.2.1",
     "emotion": "^10.0.9",
