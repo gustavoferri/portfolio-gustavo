@@ -8,6 +8,7 @@ import withAuth from '../components/hoc/withAuth';
 import { Link } from '../routes';
 
 import { getUserBlogs } from '../actions';
+import { throws } from 'assert';
 
 class UserBlogs extends React.Component {
 
@@ -22,6 +23,13 @@ class UserBlogs extends React.Component {
         return {blogs};
     }
 
+changeBlogStatus() {
+    alert('Mudando Status do Blog');
+}
+    deleteBlog() {
+        alert('Deletando Blog');
+    }
+
     separateBlogs(blogs) {
         const published = [];
         const drafts = [];
@@ -33,6 +41,23 @@ class UserBlogs extends React.Component {
         return {published, drafts};
     }
 
+    createStatus(status) {
+        return status === 'draft' ? 'Publicar'
+                                  : 'Rascunho';
+    }
+
+    dropdownOptions = (blog) => {
+        const status = this.createStatus(blog.status);
+        debugger;
+
+        return [
+            { text: status, handlers: { onClick: () => this.changeBlogStatus() }},
+            { text: 'Delete', handlers: { onClick: () => this.deleteBlog() }}
+        ]
+    }
+
+
+
     renderBlogs(blogs) {
         return (
             <ul className="user-blogs-list">
@@ -42,7 +67,7 @@ class UserBlogs extends React.Component {
                   <Link route={`/blogs/${blog._id}/edit`}>
                     <a>{blog.title}</a>
                   </Link>
-                  <PortButtonDropdown />
+                  <PortButtonDropdown items={this.dropdownOptions(blog)} />
                 </li>
                 )
               )
@@ -73,7 +98,7 @@ class UserBlogs extends React.Component {
         <BasePage className="blog-user-page">
           <Row>
             <Col md="6" className="mx-auto text-center">
-                <h2 className="blog-status-title"> Publicados</h2>
+                <h2 className="blog-status-title">Publicados</h2>
                 {this.renderBlogs(published)}
             </Col>
             <Col md="6" className="mx-auto text-center">
