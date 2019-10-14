@@ -2,7 +2,6 @@ const Blog = require('../models/blog');
 const AsyncLock = require('async-lock');
 const lock = new AsyncLock();
 
-
 exports.getBlogById = (req, res) => {
     const blogId = req.params.id;
 
@@ -11,8 +10,20 @@ exports.getBlogById = (req, res) => {
             return res.status(422).send(err);
         }
 
-    return res.json(foundBlog);
+        return res.json(foundBlog);
     })
+}
+
+exports.getUserBlogs = (req, res) => {
+    const userId = req.user.sub;
+
+    Blog.find({userId}, function(err, userBlogs) {
+        if (err) {
+            return res.status(422).send(err);
+        }
+
+        return res.json(userBlogs);
+    });
 }
 
 exports.updateBlog = (req, res) => {
@@ -43,19 +54,19 @@ exports.createBlog = (req, res) => {
         lock.acquire(lockId, function(done) {
             const blogData = req.body;
             const blog = new Blog(blogData);
-        
+
             if (req.user) {
                 blog.userId = req.user.sub;
                 blog.author = req.user.name;
             }
-        
+
             blog.save((err, createdBlog) => {
                 setTimeout(() => done(), 5000);
-        
+
                 if(err) {
                     return res.status(422).send(err);
                 }
-        
+
                 return res.json(createdBlog);
             });
             }, function(err, ret) {
