@@ -7,21 +7,21 @@ import PortButtonDropdown from '../components/ButtonDropdown';
 import withAuth from '../components/hoc/withAuth';
 import { Link, Router } from '../routes';
 
-import { getUserBlogs, updateBlog } from '../actions';
+import { getUserBlogs, updateBlog, deleteBlog } from '../actions';
 
 
 class UserBlogs extends React.Component {
 
-    static async getInitialProps({req}) {
-        let blogs = [];
-        try {
-            blogs = await getUserBlogs(req);
-        } catch (err) {
-            console.error(err);
-        }
+  static async getInitialProps({req}) {
+      let blogs = [];
+      try {
+          blogs = await getUserBlogs(req);
+      } catch (err) {
+          console.error(err);
+      }
 
-        return {blogs};
-    }
+      return {blogs};
+  }
 
 changeBlogStatus(status, blogId) {
   updateBlog({status}, blogId)
@@ -32,57 +32,70 @@ changeBlogStatus(status, blogId) {
     console.error(err.message);
   })
 }
-    deleteBlog() {
-        alert('Deletando o Post');
-    }
 
-    separateBlogs(blogs) {
-        const published = [];
-        const drafts = [];
+deleteBlogWarning(blogId) {
+  const res = confirm('Você tem certeza que deseja deletar o post?');
 
-        blogs.forEach((blog) => {
-            blog.status === 'draft' ? drafts.push(blog) : published.push(blog);
-        });
+  if(res) {
+    this.deleteBlog(blogId);
+  }
+}
+  deleteBlog(blogId) {
+      deleteBlog(blogId)
+      .then(status => {
+        Router.pushRoute('/userBlogs');
+      })
+      .catch(err => console.error(err.message)
+    )
+  }
 
-        return {published, drafts};
-    }
+  separateBlogs(blogs) {
+      const published = [];
+      const drafts = [];
 
-    createStatus(status) {
-        return status === 'draft' ? {view: 'Publicar', value: 'published'}
-                                  : {view: 'Rascunho', value: 'draft'};
-    }
+      blogs.forEach((blog) => {
+          blog.status === 'draft' ? drafts.push(blog) : published.push(blog);
+      });
 
-    dropdownOptions = (blog) => {
-        const status = this.createStatus(blog.status);
+      return {published, drafts};
+  }
 
-        return [
-            { text: status.view, handlers: { onClick: () => this.changeBlogStatus(status.value, blog._id) }},
-            { text: 'Delete', handlers: { onClick: () => this.deleteBlog() }}
-        ]
-    }
+  createStatus(status) {
+      return status === 'draft' ? {view: 'Publicar', value: 'published'}
+                                : {view: 'Rascunho', value: 'draft'};
+  }
+
+  dropdownOptions = (blog) => {
+      const status = this.createStatus(blog.status);
+
+      return [
+          { text: status.view, handlers: { onClick: () => this.changeBlogStatus(status.value, blog._id) }},
+          { text: 'Delete', handlers: { onClick: () => this.deleteBlogWarning(blog._id) }}
+      ]
+  }
 
 
-    renderBlogs(blogs) {
-        return (
-            <ul className="user-blogs-list">
-            {
-             blogs.map((blog, index) => (
-                <li key={index}>
-                  <Link route={`/blogs/${blog._id}/edit`}>
-                    <a>{blog.title}</a>
-                  </Link>
-                  <PortButtonDropdown items={this.dropdownOptions(blog)} />
-                </li>
-                )
+  renderBlogs(blogs) {
+      return (
+          <ul className="user-blogs-list">
+          {
+            blogs.map((blog, index) => (
+              <li key={index}>
+                <Link route={`/blogs/${blog._id}/edit`}>
+                  <a>{blog.title}</a>
+                </Link>
+                <PortButtonDropdown items={this.dropdownOptions(blog)} />
+              </li>
               )
-            }
-            </ul>
-        )
-    }
+            )
+          }
+          </ul>
+      )
+  }
 
-    render() {
-        const {blogs} = this.props;
-        const {published, drafts} = this.separateBlogs(blogs);
+  render() {
+      const {blogs} = this.props;
+      const {published, drafts} = this.separateBlogs(blogs);
 
       return (
         <BaseLayout {...this.props.auth} headerType={'landing'}>
