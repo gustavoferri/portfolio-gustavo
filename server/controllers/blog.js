@@ -3,6 +3,17 @@ const AsyncLock = require('async-lock');
 const slugify = require('slugify');
 const lock = new AsyncLock();
 
+exports.getBlogs = (req, res) => {
+
+    Blog.find({status: 'published'}, function(err, publishedBlogs) {
+        if (err) {
+            return res.status(422).send(err);
+        }
+
+        return res.json({publishedBlogs});
+    });
+}
+
 exports.getBlogById = (req, res) => {
     const blogId = req.params.id;
 
@@ -36,15 +47,14 @@ exports.updateBlog = (req, res) => {
             return res.status(422).send(err);
         }
 
-        if (blogData.status && blogData.status === 'published' && !foimdBlog.slug) {
-        
-         foundBlog.slug = slugify('some string', {
+        if (blogData.status && blogData.status === 'published' && !foundBlog.slug) {
+
+         foundBlog.slug = slugify(foundBlog.title, {
                                      replacement: '-',
                                      remove: null,
                                      lower: true
                                   });
         }
-
 
         foundBlog.set(blogData);
         foundBlog.updatedAt = new Date();
@@ -87,3 +97,15 @@ exports.createBlog = (req, res) => {
                 return res.status(422).send({message: 'Blog is getting saved!'});
             }
         }
+
+exports.deleteBlog = (req, res) => {
+    const blogId = req.params.id;
+
+    Blog.deleteOne({_id: blogId}, function(err) {
+        if (err) {
+            return res.status(422).send(err);
+        }
+
+        res.json({status: 'deleted'});
+    })
+}
