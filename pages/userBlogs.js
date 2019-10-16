@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import PortButtonDropdown from '../components/ButtonDropdown';
 
 import withAuth from '../components/hoc/withAuth';
@@ -105,8 +105,11 @@ deleteBlogWarning(blogId) {
             <div className="row">
               <div className="col-lg-8 col-md-10 mx-auto">
                 <div className="site-heading">
-                  <h1>Posts Recentes</h1>
-                  <span className="subheading">Desenvolvimento, Web, E-commerce... </span>
+                  <h1>Blogs - Painel de Controle</h1>
+                  <span className="subheading">Vamos escrever um bom post hoje{' '}
+                  <Link route='/blogs/new'>
+                  <Button color="primary">Crie um novo Post</Button>
+                 </Link></span>
                 </div>
               </div>
             </div>

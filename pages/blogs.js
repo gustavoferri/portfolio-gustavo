@@ -24,7 +24,7 @@ class Blogs extends React.Component {
     }
 
     renderBlogs = (blogs) => (
-      blogs.publishedBlogs.map((blog, index) => (
+      blogs.map((blog, index) => (
         <div  key={index} className="post-preview">
         <Link route={`/blogs/${blog.slug}`}>
           <a>
