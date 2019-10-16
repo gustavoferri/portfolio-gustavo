@@ -64,6 +64,10 @@ export const deletePortfolio = (portfolioId) => {
 
 // --------------- BLOG ACTIONS ------------------ //
 
+export const getBlogs = async (req) => {
+    return axiosInstance.get('/blogs').then(response => response.data);
+}
+
 export const getUserBlogs = async (req) => {
     return await axiosInstance.get('/blogs/me', setAuthHeader(req)).then(response => response.data);
    }
@@ -85,5 +89,7 @@ export const getBlogById = (blogId) => {
 }
 
 export const deleteBlog = (blogId) => {
-    return axiosInstance.delete(`/blogs/${blogId}`, setAuthHeader()).then(response => response.data);
+    return axiosInstance.delete(`/blogs/${blogId}`, setAuthHeader())
+             .then(response => response.data)
+             .catch(err => rejectPromise(err))
 }

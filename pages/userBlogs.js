@@ -106,7 +106,7 @@ deleteBlogWarning(blogId) {
               <div className="col-lg-8 col-md-10 mx-auto">
                 <div className="site-heading">
                   <h1>Posts Recentes</h1>
-                  <span className="subheading">Desenvolvimento, Web,  E-commerce... </span>
+                  <span className="subheading">Desenvolvimento, Web, E-commerce... </span>
                 </div>
               </div>
             </div>
