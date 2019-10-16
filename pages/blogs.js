@@ -6,6 +6,8 @@ import { Container, Row, Col } from 'reactstrap';
 import { Link } from '../routes';
 
 import { getBlogs } from '../actions';
+import { shortenText } from '../helpers/utils';
+
 
 import moment from 'moment';
 
@@ -32,13 +34,13 @@ class Blogs extends React.Component {
               {blog.title}
             </h2>
             <h3 className="post-subtitle">
-             {blog.subtitle}
+             {shortenText(blog.subTitle)}
             </h3>
           </a>
         </Link>
-        <p className="post-meta">Posted by
+        <p className="post-meta">Postado por
           <a href="#"> {blog.author} </a>
-          {moment(blog.createdAt).format('LLLL')}</p>
+          {moment(blog.createdAt).startOf('day').fromNow()}   </p>
       </div>
        )
       )

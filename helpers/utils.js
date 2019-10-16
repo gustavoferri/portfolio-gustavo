@@ -6,3 +6,12 @@ if (!cookie) { return undefined };
 
 return cookie.split('=')[1];
 }
+
+
+export const shortenText = (text, maxLength = 124) => {
+    if (text && text.length > text.maxLength) {
+      return `${text.substring(0, maxLength)} ...`;
+    }
+
+    return text;
+  }
