@@ -13,17 +13,14 @@ import {
 
 import auth0 from '../../services/auth0';
 
-
     const BsNavLink = (props) => {
-        const { route, title } = props;
-        const className = props.className || "";
+      const { route, title } = props;
 
-
-         return (
-            <Link href={route}>
-                <a className={`nav-link port-navbar-link ${className}`}> {title} </a>
-            </Link>  
-        )
+      return (
+        <ActiveLink activeClassName="active" route={route}>
+          <a className="nav-link port-navbar-link"> {title} </a>
+        </ActiveLink>
+      )
     }
 
     const Login = () => {
@@ -60,7 +57,7 @@ export default class Header extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-  
+
   render() {
 
     const { isAuthenticated, user, className } = this.props;
@@ -88,7 +85,7 @@ export default class Header extends React.Component {
               <NavItem className="port-navbar-item">
                   <BsNavLink route="/cv" title="Cv" />
               </NavItem>
-              { !isAuthenticated && 
+              { !isAuthenticated &&
               <NavItem className="port-navbar-item">
                   <Login />
               </NavItem>
@@ -100,7 +97,7 @@ export default class Header extends React.Component {
               }
               { isAuthenticated &&
               <NavItem className="port-navbar-item">
-                  <span className="nav-link port-navbar-link"> {user.name} </span> 
+                  <span className="nav-link port-navbar-link"> {user.name} </span>
               </NavItem>
               }
             </Nav>
