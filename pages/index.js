@@ -17,7 +17,7 @@ class Index extends React.Component  {
     componentDidMount() {
         this.animateCard();
     }
-    componentWillLeave() {
+    componentWillUnmount() {
         this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
     }
     animateCard() {
@@ -25,7 +25,7 @@ class Index extends React.Component  {
             this.setState({
                 isFlipping: !this.state.isFlipping
             });
-        }, 10000);
+        }, 60000);
     }
     render() {
         const { isAuthenticated, user } =  this.props.auth;
