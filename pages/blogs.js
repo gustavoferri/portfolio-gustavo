@@ -50,7 +50,10 @@ class Blogs extends React.Component {
       const {blogs} = this.props;
 
       return (
-        <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
+        <BaseLayout  {...this.props.auth}
+                      headerType={'landing'}
+                      className="blog-listing-page"
+                      title="Gustavo Ferri - Últimas Postagens do Blog">
                 <div className="masthead" style={{"backgroundImage": "url('/static/images/home-bg.jpg')"}}>
                   <div className="overlay"></div>
                   <Container>
@@ -58,7 +61,7 @@ class Blogs extends React.Component {
                       <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="site-heading">
                           <h1>Blog do Dev</h1>
-                          <span className="subheading">Desenvolvimento | Web, App, Plataforma, Framework e E-commerce</span>
+                          <span className="subheading">Assuntos relacionados a Desenvolvimento Web.</span>
                         </div>
                       </div>
                     </div>

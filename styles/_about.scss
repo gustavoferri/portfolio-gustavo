@@ -19,12 +19,13 @@
     }
 
     .subtitle {
-     @include animation-detail(fadein 2.2s);
+     @include animation-detail(2.2s);
+     font-size: 33px;
     }
 
     .subsubTitle {
      @include animation-detail(3.6s);
-      font-size: 18px;
+     font-size: 18px;
     }
 
     @keyframes fadein {

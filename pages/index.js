@@ -12,7 +12,7 @@ class Index extends React.Component  {
         this.state = {
             isFlipping: false
         }
-        this.roles = ['Developer', 'Mobile Specialist', 'React.js', 'JavaScript', 'Magento'];
+        this.roles = ['Full Stack Web Developer', 'Magento Developer', 'Mobile Specialist', 'Wordpress Professional', 'JavaScript', 'React.js'];
     }
     componentDidMount() {
         this.animateCard();
@@ -32,7 +32,9 @@ class Index extends React.Component  {
         const { isFlipping } = this.state;
 
     return (
-      <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth} headerType="index">
+      <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth}
+                  headerType="index"
+                  title="Gustavo Ferri - Portfolio | Full Stack Web Developer | Magento Developer | Wordpress Professional | PHP Developer e Freelancer">
         <div className="main-section">
           <div className="background-image">
              <img src="/static/images/background-index.png" />

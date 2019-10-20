@@ -8,14 +8,14 @@ class Sobre extends React.Component {
 
     render() {
       return (
-        <BaseLayout {...this.props.auth}>
+        <BaseLayout title="Gustavo Ferri - Sobre mim" {...this.props.auth}>
             <BasePage className="about-page">
                   <Row className="mt-5">
                      <Col md="6">
                         <div className="left-side">
-                           <h1 className="title fadein">Olá, bem vindo(a)!</h1>
-                           <h4 className="subtitle fadein">Saiba mais sobre mim.</h4>
-                           <p className="subsubTitle fadein"></p>
+                           <h1 className="title fadein">Olá, <span class="welcome">Seja Bem Vindo(a)!</span></h1>
+                           <h4 className="subtitle fadein">Fique à vontade...</h4>
+                           <p className="subsubTitle fadein">Aproveite e Leia Meu Breve Resumo.</p>
                         </div>
                      </Col>
                      <Col md="6">
