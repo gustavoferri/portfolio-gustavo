@@ -9,7 +9,11 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink} from 'reactstrap';
+  NavLink,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu} from 'reactstrap';
 
 import auth0 from '../../services/auth0';
 
@@ -47,21 +51,52 @@ export default class Header extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
-
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
 
-  render() {
+  toggleDropdown() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
 
+  renderBlogMenu() {
+    const { isSiteOwner } = this.props;
+
+    if(isSiteOwner) {
+      return (
+        <Dropdown className="port-navbar-link" nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+          <DropdownToggle nav caret>
+            Blog
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>
+               <BsNavLink route="/blogs" title="Blogs" /></DropdownItem>
+            <DropdownItem>
+               <BsNavLink route="/blogs/new" title="Criar Post" />
+            </DropdownItem>
+            <DropdownItem>
+               <BsNavLink route="/blogs/dashboard" title="Painel Controle" />
+            </DropdownItem>
+          </DropdownMenu>
+      </Dropdown>
+      )
+    }
+
+    return (
+      <NavItem className="port-navbar-item">
+         <BsNavLink route="/blogs" title="Blog" />
+      </NavItem>
+    )
+  }
+
+  render() {
     const { isAuthenticated, user, className } = this.props;
-    const { isOpen } = this.state;
 
     return (
       <div>
@@ -71,28 +106,26 @@ export default class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem  className="port-navbar-item">
-                  <BsNavLink route="/" title="Home" />
+                <BsNavLink route="/" title="Home" />
               </NavItem>
               <NavItem className="port-navbar-item">
                   <BsNavLink route="/sobre" title="Sobre" />
               </NavItem>
               <NavItem className="port-navbar-item">
-                  <BsNavLink route="/portfolios" title="Portifolio" />
+                <BsNavLink route="/portfolios" title="Portifolio" />
               </NavItem>
+                  {this.renderBlogMenu()}
               <NavItem className="port-navbar-item">
-                  <BsNavLink route="/blogs" title="Blog" />
-              </NavItem>
-              <NavItem className="port-navbar-item">
-                  <BsNavLink route="/cv" title="Cv" />
+                <BsNavLink route="/cv" title="Cv" />
               </NavItem>
               { !isAuthenticated &&
               <NavItem className="port-navbar-item">
-                  <Login />
+                <Login />
               </NavItem>
               }
               { isAuthenticated &&
               <NavItem className="port-navbar-item">
-                  <Logout />
+                <Logout />
               </NavItem>
               }
               { isAuthenticated &&
