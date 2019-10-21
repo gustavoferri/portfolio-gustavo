@@ -34,7 +34,7 @@ class Index extends React.Component  {
     return (
       <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth}
                   headerType="index"
-                  title="Gustavo Ferri - Portfolio | Full Stack Web Developer | Magento Developer | Wordpress Professional | PHP Developer e Freelancer">
+                  title="Gustavo Ferri - Portfolio | Desenvolvedor Magento - Wordpress Professional - Programador PHP e Freelancer">
         <div className="main-section">
           <div className="background-image">
              <img alt="background portfolio" src="/static/images/background-index.png" />
