@@ -37,7 +37,7 @@ class Index extends React.Component  {
                   title="Gustavo Ferri - Portfolio | Full Stack Web Developer | Magento Developer | Wordpress Professional | PHP Developer e Freelancer">
         <div className="main-section">
           <div className="background-image">
-             <img src="/static/images/background-index.png" />
+             <img alt="background portfolio" src="/static/images/background-index.png" />
           </div>
           <Container>
             <Row>
@@ -51,7 +51,7 @@ class Index extends React.Component  {
                               Conheça alguns dos meus trabalhos realizados.
                             </div>
                           </div>
-                          <img className="image" src="/static/images/section-1.png"/>
+                          <img alt="young programming blue" className="image" src="/static/images/section-1.png"/>
                           <div className="shadow-custom">
                              <div className="shadow-inner"> </div>
                           </div>
@@ -63,7 +63,7 @@ class Index extends React.Component  {
                              Serviço de alta qualidade feito por profissional.
                          </div>
                        </div>
-                       <img className="image" src="/static/images/section-2.png"/>
+                       <img alt="young programming orange" className="image" src="/static/images/section-2.png"/>
                        <div className="shadow-custom shadow-custom-2">
                           <div className="shadow-inner"> </div>
                        </div>
