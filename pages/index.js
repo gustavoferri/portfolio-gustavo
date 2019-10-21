@@ -12,7 +12,7 @@ class Index extends React.Component  {
         this.state = {
             isFlipping: false
         }
-        this.roles = ['Full Stack Web Developer', 'Magento Developer', 'Mobile Specialist', 'Wordpress Professional', 'JavaScript', 'React.js'];
+        this.roles = ['Freelancer', 'Full Stack Web Developer', 'E-commerce Specialist', 'Magento Developer', 'Mobile Specialist', 'Wordpress Professional'];
     }
     componentDidMount() {
         this.animateCard();
