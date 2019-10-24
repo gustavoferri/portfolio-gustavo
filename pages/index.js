@@ -2,8 +2,8 @@ import React from 'react';
 import Typed from 'react-typed';
 
 import BaseLayout from '../components/layouts/BaseLayout'
-
 import { Button, Container, Row, Col } from 'reactstrap';
+import moment from 'moment';
 
 class Index extends React.Component  {
 
@@ -98,6 +98,7 @@ class Index extends React.Component  {
               </Col>
             </Row>
           </Container>
+
         </div>
        </BaseLayout>
       )
