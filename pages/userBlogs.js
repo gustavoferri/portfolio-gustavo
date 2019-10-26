@@ -74,7 +74,6 @@ deleteBlogWarning(blogId) {
       ]
   }
 
-
   renderBlogs(blogs) {
       return (
           <ul className="user-blogs-list">
