@@ -17,7 +17,7 @@ class Auth0 {
     constructor() {
         this.auth0 = new auth0.WebAuth({
             domain: 'portfolio-gustavo.auth0.com',
-            clientID: '7mc3hlqKkLNS9oJJwgL2QAKM7yIfU7cR',
+            clientID: CLIENT_ID,
             redirectUri: `${process.env.BASE_URL}/callback`,
             responseType: 'token id_token',
             scope: 'openid profile'
@@ -46,23 +46,17 @@ class Auth0 {
     setSession(authResult) {
          const expiresAt = JSON.stringify((authResult.expiresIn = 1000) + new Date().getTime());
 
-        //  localStorage.setItem('id_token', authResult.idToken);
-
-        Cookies.set('user', authResult.idTokenPayload);
         Cookies.set('jwt', authResult.idToken);
-        Cookies.set('expiresAt', expiresAt);
     }
 
     logout() {
-        Cookies.remove('user');
         Cookies.remove('jwt');
-        Cookies.remove('expiresAt');
 
         this.auth0.logout({
             returnTo: '',
-            clientID: '7mc3hlqKkLNS9oJJwgL2QAKM7yIfU7cR'
+            clientID: 'CLIENT_ID'
         })
-    }  
+    }
 
     login() {
     this.auth0.authorize();
@@ -78,10 +72,10 @@ class Auth0 {
    async verifyToken(token) {
       if (token) {
           const decodedToken = jwt.decode(token, { complete: true});
-          
+
           if (!decodedToken) { return undefined; }
 
-          const jwks = await this.getJWKS();   
+          const jwks = await this.getJWKS();
           const jwk = jwks.keys[0];
 
           // BUILD CERTIFICATE
@@ -91,14 +85,14 @@ class Auth0 {
 
           if (jwk.kid === decodedToken.header.kid){
               try {
-                 const verifiedToken = jwt.verify(token, cert); 
+                 const verifiedToken = jwt.verify(token, cert);
                  const expiresAt = verifiedToken.exp * 1000;
 
                  return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
               } catch (err) {
                 return undefined;
               }
-          }   
+          }
       }
 
       return undefined;
@@ -116,7 +110,7 @@ class Auth0 {
 
         const token = getCookieFromReq(req, 'jwt');
         const verifiedToken = await this.verifyToken(token);
-        
+
         return verifiedToken;
       }
       return undefined;
