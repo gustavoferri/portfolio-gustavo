@@ -17,7 +17,7 @@ class PortfolioEdit extends React.Component {
       let portfolio = {};
 
       try {
-        portfolio = await getPortfolioById(query.id);   
+        portfolio = await getPortfolioById(query.id);
       } catch (error) {
         console.error(err);
       }
@@ -52,7 +52,7 @@ class PortfolioEdit extends React.Component {
 
     render() {
       const {error} = this.state;
-      const { portfolio } = this.props; 
+      const { portfolio } = this.props;
 
       return (
         <BaseLayout {...this.props.auth}>
@@ -60,7 +60,7 @@ class PortfolioEdit extends React.Component {
               <Row>
                 <Col md="6">
                 <PortfolioCreateForm initialValues={portfolio}
-                                     error={error} 
+                                     error={error}
                                      onSubmit={this.updatePortfolio} />
                 </Col>
               </Row>
