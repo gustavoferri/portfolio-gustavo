@@ -9,6 +9,9 @@
     "start": "NODE_ENV=production node server/index.js",
     "heroku-postbuild": "npm run build"
   },
+  "engines": {
+    "Node": "10.15.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -35,7 +38,7 @@
     "net": "^1.0.2",
     "next": "^7.0.2",
     "next-routes": "^1.4.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.0",
     "react": "^16.7.0",
     "react-datepicker": "^1.8.0",
     "react-dom": "^16.7.0",
