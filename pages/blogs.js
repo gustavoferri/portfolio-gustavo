@@ -78,43 +78,12 @@ class Blogs extends React.Component {
                       </div>
                     </Col>
                   </Row>
-
-                  <footer>
-                    <Container>
-                      <Row>
-                        <div className="col-lg-8 col-md-10 mx-auto">
-                          <ul className="list-inline text-center">
-                            <li className="list-inline-item">
-                              <a target="_blank" href="https://www.linkedin.com/in/gustavoferri/">
-                                <span className="fa-stack fa-lg">
-                                  <i className="fas fa-circle fa-stack-2x"></i>
-                                  <i className="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                                </span>
-                              </a>
-                            </li>
-                            <li className="list-inline-item">
-                              <a target="_blank" href="https://github.com/gustavoferri/">
-                                <span className="fa-stack fa-lg">
-                                  <i className="fas fa-circle fa-stack-2x"></i>
-                                  <i className="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                              </a>
-                            </li>
-                            <li className="list-inline-item">
-                            <a target="_blank" href="https://codepen.io/gustavoferri">
-                              <span className="fa-stack fa-lg">
-                                <i className="fas fa-circle fa-stack-2x"></i>
-                                <i className="fab fa-codepen fa-stack-1x fa-inverse"></i>
-                              </span>
-                            </a>
-                          </li>
-                          </ul>
-                          <p className="copyright text-muted">Copyright &copy; Gustavo Ferri | Magento Developer, Front-end Developer e Full Stack Developer, {moment().format('YYYY')}.</p>
-                        </div>
-                      </Row>
-                    </Container>
-                  </footer>
                 </BasePage>
+                <style jsx>
+                  {`
+                    @import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+                  `}
+              </style>
               </BaseLayout>
               )
           }

@@ -146,18 +146,29 @@
 .front {
   transform: rotateY(0deg);
   z-index: 9999;
+  margin-top: 10px;
 }
 
 .back {
   transform: rotateY(180deg);
 }
 
-/*footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #EEEEEE;
-  text-align: center;
+@media (min-width: 1600px)
+{
+
+.front {
+  margin-top: 100px;
+  }
+}
+
+  footer {
+    padding: 15px 0 0 0;
+    background: #ecedee;
+
+}
+footer .container {
+  border-top: 2px solid #E0E0E0;
   padding-top: 20px;
-}*/
+  position: relative;
+  top: -15px;
+}

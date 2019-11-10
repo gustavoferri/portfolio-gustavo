@@ -4,6 +4,7 @@ import Typed from 'react-typed';
 import BaseLayout from '../components/layouts/BaseLayout'
 import { Button, Container, Row, Col } from 'reactstrap';
 import moment from 'moment';
+import BasePage from '../components/BasePage';
 
 class Index extends React.Component  {
 
@@ -33,8 +34,8 @@ class Index extends React.Component  {
 
     return (
       <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth}
-                  headerType="index"
-                  title="Gustavo Ferri - Portfolio | Desenvolvedor Magento - Wordpress Professional - Programador PHP e Freelancer">
+              headerType="index"
+              title="Gustavo Ferri - Portfolio | Desenvolvedor Magento - Wordpress Professional - Programador PHP e Freelancer">
         <div className="main-section">
           <div className="background-image">
              <img alt="background portfolio" src="/static/images/background-index.png" />
@@ -58,9 +59,11 @@ class Index extends React.Component  {
                        </div>
                        <div className="back">
                        <div className="hero-section-content">
-                         <h2> Tire Seu Projeto Do Papel </h2>
+                         <h2>  </h2>
                          <div className="hero-section-content-intro">
-                             Serviço de alta qualidade feito por profissional.
+                             Serviço de alta qualidade realizada por profissionais com ampla experiênca no
+                             mercado de: Desenvolvimento, Design e Marketing.
+
                          </div>
                        </div>
                        <img alt="young programming orange" className="image" src="/static/images/section-2.png"/>
@@ -98,9 +101,10 @@ class Index extends React.Component  {
               </Col>
             </Row>
           </Container>
-
         </div>
-       </BaseLayout>
+        </BaseLayout>
+
+
       )
    }
 }
