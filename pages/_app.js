@@ -6,6 +6,7 @@ import auth0 from '../services/auth0';
 //Style
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss';
+import Fonts from '../helpers/Fonts';
 
 export default class MyApp extends App {
 
@@ -22,6 +23,10 @@ export default class MyApp extends App {
     const auth = { user, isAuthenticated: !!user, isSiteOwner };
 
     return { pageProps, auth}
+  }
+
+  componentDidMount() {
+    //Fonts();
   }
 
   render () {

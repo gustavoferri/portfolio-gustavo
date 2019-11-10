@@ -52,21 +52,21 @@ const html = new Html({ rules })
     updateMenu = () => {
       const menu = this.menu
       if (!menu) return
-  
+
       const { value } = this.state
       const { fragment, selection } = value
-  
+
       if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
         menu.removeAttribute('style')
         return
       }
-  
+
       const native = window.getSelection()
       const range = native.getRangeAt(0)
       const rect = range.getBoundingClientRect()
       menu.style.opacity = 1
       menu.style.top = `${rect.top + window.pageYOffset - menu.offsetHeight}px`
-  
+
       menu.style.left = `${rect.left +
         window.pageXOffset -
         menu.offsetWidth / 2 +
@@ -92,7 +92,7 @@ const html = new Html({ rules })
       const {save, isLoading} = this.props;
       const headingValues = this.getTitle();
       const text = html.serialize(value);
-    
+
      !isLoading && save(text, headingValues);
     }
 
@@ -105,8 +105,8 @@ const html = new Html({ rules })
         { isLoaded &&
             <Editor {...this.props}
                     placeholder="Digite algum texto..."
-                    value={this.state.value} 
-                    onChange={this.onChange} 
+                    value={this.state.value}
+                    onChange={this.onChange}
                     onKeyDown={(event, change, next) => this.onKeyDown(event, change, next)}
                     renderMark={renderMark}
                     renderNode={renderNode}
@@ -125,6 +125,11 @@ const html = new Html({ rules })
           <ControllMenu isLoading={isLoading} save={() => this.save()}></ControllMenu>
           {children}
           <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+          <style jsx>
+            {`
+              @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+            `}
+          </style>
         </React.Fragment>
       )
     }
